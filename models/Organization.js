@@ -20,10 +20,10 @@ module.exports = db.sequelize.define(
             defaultValue: 123456
         },
         organization_email: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
             defaultValue: 1
-        }
+        },
         organization_password:{
           type: Sequelize.STRING,
           allowNull: false

@@ -18,9 +18,10 @@ router.get("/organizations", (req, res) => {
 
 
 
-        router.use(cors())
 
-        process.env.SECRET_KEY = 'secret'
+router.use(cors())
+
+process.env.SECRET_KEY = 'secret'
 router.post('/login', (req, res) => {
       Organization.findOne({
       where: {
@@ -31,7 +32,7 @@ router.post('/login', (req, res) => {
                 if(organization){
                     if(bcrypt.compareSync(req.body.organization_password, user.organization_password)){
                         let token = jwt.sign(organizations.dataValues, process.env.SECRET_KEY, {
-                            expiresIn: 1440
+                            expiresIn: 2000
                         })
                         res.send(token)
                     }
@@ -43,4 +44,5 @@ router.post('/login', (req, res) => {
                 res.status(400).json({error: err})
             })
         })
+
 module.exports = router

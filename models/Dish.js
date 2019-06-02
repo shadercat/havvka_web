@@ -14,6 +14,14 @@ module.exports = db.sequelize.define(
             type: Sequelize.STRING,
             allowNull: false
         },
+        dish_long_description: {
+           type: Sequelize.STRING,
+           allowNull: true
+        },
+        dish_short_description: {
+          type: Sequelize.STRING,
+          allowNull: true
+        },
         dish_price: {
             type: Sequelize.DOUBLE,
             allowNull: false,

@@ -14,19 +14,26 @@ router.get("/dishes", (req, res) => {
 });
 
 // Add dish
-router.post("/dish", (req, res) =>{
-  if(!req.body.dish_name){
-    res.status(400)
-    res.json({error: "bad data"})
-  } else {
-    dish.create(req.body)
-    .then(() => {
-      res.send("Dish added")
+router.post('/dish', (req, res) => {
+    // const today = new Date()
+    const dishData = {
+        dish_name: req.body.dish_name,
+        dish_long_description: req.body.dish_long_description,
+        dish_short_description: req.body.dish_short_description,
+        dish_type: req.body.dish_type,
+        dish_price: req.body.dish_price,
+        organization_id: req.body.organization_id
+    }
+    Dish.create(dishData)
+                .then(dish => {
+                    res.json({status: dish.dish_name + ' added'})
+                })
+                .catch(err =>
+                    res.send("error: " + err)
+                )
+    .catch(err =>{
+        res.send('error: ' + err)
     })
-    .catch(err => {
-      res.send("Error: " + err)
-    })
-  }
 })
 
 module.exports = router;

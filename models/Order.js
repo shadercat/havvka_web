@@ -10,12 +10,12 @@ module.exports = db.sequelize.define(
             allowNull: false,
             autoIncrement: true
         },
-        order_email: {
-            type: Sequelize.STRING,
+        user_id: {
+            type: Sequelize.INTEGER,
             allowNull: false
         },
-        order_password: {
-            type: Sequelize.STRING,
+        organization_id: {
+            type: Sequelize.INTEGER,
             allowNull: false,
             defaultValue: 123456
         },
