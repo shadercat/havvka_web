@@ -13,6 +13,35 @@ router.get("/orders", (req, res) => {
         })
 });
 
+router.get("/orders/:organization_id", (req, res) => {
+  Order.findAll(
+    where: {
+      organization_id: req.params.organization_id
+    }
+  )
+  .then(orders => {
+    res.json(orders)
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
+
+router.get("/orders/:user_id", (req, res) => {
+  Order.findAll(
+    where: {
+      user_id: req.params.user_id
+    }
+  )
+  .then(orders => {
+    res.json(orders)
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
 // Delete order by id
 router.delete("/orders/:id", (req, res) => {
   Order.destroy({
