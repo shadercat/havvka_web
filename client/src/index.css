@@ -15,3 +15,17 @@
     color: var(--mainColor);
     border-color: var(--mainColor);
 }
+.carousel {
+    background: var(--mainColor);
+}
+.carousel-item {
+    height: 600px;
+}
+.carousel-caption {
+    text-align: left;
+    height: 60%;
+}
+.carousel-slide {
+    height: 100%;
+    float: right;
+}
