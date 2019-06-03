@@ -13,12 +13,12 @@ class Navbar extends Component {
         const loginRegLink = (
             <ul  className="navbar-nav">
                 <li className="nav-item">
-                    <Link to="/login" className="nav-link">
+                    <Link to="/login" className="nav-link text-white">
                         Login
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/register" className="nav-link">
+                    <Link to="/register" className="nav-link text-white">
                         register
                     </Link>
                 </li>
@@ -28,23 +28,23 @@ class Navbar extends Component {
         const userLink = (
             <ul  className="navbar-nav">
             <li className="nav-item">
-                <Link to="/FavouriteDishes" className="nav-link">
+                <Link to="/FavouriteDishes" className="nav-link text-white">
                     FavouriteDishes
                 </Link>
             </li>
             <li className="nav-item">
-                <Link to="/dishestop" className="nav-link">
+                <Link to="/dishestop" className="nav-link text-white">
                     DishesTop
                 </Link>
             </li>
             <li className="nav-item">
-                <Link to="/cart" className="nav-link">
+                <Link to="/cart" className="nav-link text-white">
                     Cart
                 </Link>
             </li>
 
-            <li className="nav-item">
-                <Link to="/userorders" className="nav-link">
+            <li className="nav-item ">
+                <Link to="/userorders" className=" text-white nav-link">
                     UserOrders
                 </Link>
             </li>
@@ -57,14 +57,14 @@ class Navbar extends Component {
         )
 
         return(
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+            <nav className="navbar navbar-expand-lg float-right main-nav">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1"
                 aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggle-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse justify-content-md-center" id="navbar1">
                 <ul className="navbar-nav"><li className="nav-item">
-                <Link to="/" className="nav-link">Home</Link>
+                <Link to="/" className="nav-link text-white">Home</Link>
                 </li></ul>
                 {localStorage.usertoken?userLink:!localStorage.orgtoken?loginRegLink:<br/>}
                 </div>

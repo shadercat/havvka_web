@@ -1,16 +1,62 @@
 :root {
-    --mainColor: rgb(211, 16, 107);
+    --mainColor: #D81B60;
+    --success-green: #2ecebf;
+    --main-color: #D81B60;
+    --interactive-main-color: #E81D66;
+    --blue-color: #199ED8;
+    --interactive-blue-color: ;
+    --light-gray-color: #ECECEC;
+    --gray-color: #D7D7D7;
+    --dark-gray-color: #585858;
+    --black-color: #131313;
+    --white-color: #ffffff;
+    /*borders*/
+    --no-border: 0px;
+    /*fonts*/
+    --normal-font:"Yu Gothic UI";
+    --attention-font: "Arial Bold", Arial;
 }
 .navbar .navbar-brand{
     color: var(--mainColor);
 }
+.navbar{
+  justify-content: space-between;
+}
+
 .navbar-expand {
     justify-content: space-between;
+    align-content: flex-end;
 }
 .btn-primary {
     background-color: var(--mainColor);
     border: 0;
 }
+
+
+.nav-item:hover{
+  background-color: var(--interactive-main-color);
+  margin: 0;
+  padding: 0;
+}
+
+.navbar{
+  padding: 0;
+  margin: 10px 0px 10px 0px;
+
+}
+
+.nav-item, .nav-item:hover{
+  padding: 15px 20px;
+}
+
+.headernav{
+  background-color: white;
+}
+
+.main-nav{
+  background-color: var(--mainColor);
+}
+
 .btn-outline-primary {
     color: var(--mainColor);
     border-color: var(--mainColor);
