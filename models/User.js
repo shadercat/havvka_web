@@ -18,11 +18,6 @@ module.exports = db.sequelize.define(
             type: Sequelize.STRING,
             allowNull: false,
             defaultValue: 123456
-        },
-        role_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            defaultValue: 1
         }
     },
     {

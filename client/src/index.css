@@ -16,6 +16,10 @@
     --normal-font:"Yu Gothic UI";
     --attention-font: "Arial Bold", Arial;
 }
+html, body{
+  height: 100%;
+}
+
 .navbar .navbar-brand{
     color: var(--mainColor);
 }
@@ -27,11 +31,23 @@
     justify-content: space-between;
     align-content: flex-end;
 }
-.btn-primary {
+.btn-primary-havvka {
     background-color: var(--mainColor);
     border: 0;
+    color: white;
+}
+.btn-primary-havvka:focus{
+  border-color: var(--interactive-main-color);
 }
 
+.btn-primary-havvka:hover{
+  background-color: var(--interactive-main-color);
+  color: white;
+}
+
+.btn-primary-havvka:disabled{
+  background-color: var(--dark-gray-color);
+}
 
 .nav-item:hover{
   background-color: var(--interactive-main-color);
@@ -41,12 +57,12 @@
 
 .navbar{
   padding: 0;
-  margin: 10px 0px 10px 0px;
+  margin: 0.7vh 0px 1.2vh 0px;
 
 }
 
 .nav-item, .nav-item:hover{
-  padding: 15px 20px;
+  padding: 1.2vh 1.7vh;
 }
 
 .headernav{
@@ -74,4 +90,17 @@
 .carousel-slide {
     height: 100%;
     float: right;
+}
+
+.container{
+  height: 120%;
+}
+
+footer{
+  background-color: var(--mainColor);
+  width: 100%;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+  padding: 15px;
 }

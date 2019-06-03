@@ -9,7 +9,7 @@ class Register extends Component {
       email: '',
       password: '',
       password2: '',
-    formErrors: {email: '', password: ''},
+    formErrors: {email: '', password: '', password2: ''},
     emailValid: false,
     passwordValid: false,
     password2Valid: false,
@@ -44,6 +44,7 @@ class Register extends Component {
     let fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
     let passwordValid = this.state.passwordValid;
+    let password2Valid = this.state.password2Valid;
   switch(fieldName) {
       case 'email':
         emailValid = value.length > 0 && value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -54,6 +55,8 @@ class Register extends Component {
         fieldValidationErrors.password = passwordValid ? '': ' is too short';
         break;
       case 'password2':
+        password2Valid = (this.state.password == this.state.password2);
+        fieldValidationErrors.password2 = password2Valid ? '' : 'passwords don\'t match';
         break;
       default:
         break;
@@ -93,13 +96,14 @@ class Register extends Component {
                   <input type="password" className="form-control" name="password" placeholder="Enter your password"
                   value={this.state.password} onChange={this.onChange}/>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="password">Repeat Password</label>
+                <div className={`form-group
+                 ${this.errorClass(this.state.formErrors.password2)}`}>
+                  <label htmlFor="password2">Repeat Password</label>
                   <input type="password" className="form-control" name="password2" placeholder="Repeat your password"
                   value={this.state.password2} onChange={this.onChange}/>
                 </div>
                 <button type="submit"
-                className="btn btn-lg btn-primary btn-block" disabled={!this.state.formValid}>Register</button>
+                className="btn btn-lg btn-primary-havvka btn-block" disabled={!this.state.formValid}>Register</button>
               </form>
             </div>
           </div>

@@ -24,7 +24,6 @@ class Login extends Component {
       user_email: this.state.email,
       user_password: this.state.password
     }
-
     login(user).then(res => {
       if(res){
           this.props.history.push(`/`)
@@ -49,7 +48,7 @@ class Login extends Component {
                   value={this.state.password} onChange={this.onChange}/>
                 </div>
                 <button type="submit"
-                className="btn btn-lg btn-primary btn-block">Sign in</button>
+                className="btn btn-lg btn-primary-havvka btn-block">Sign in</button>
               </form>
             </div>
           </div>
