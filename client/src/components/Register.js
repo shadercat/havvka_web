@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {register} from './UserFunctions'
 import FormErrors from './FormErrors'
+import PageTitle from './PageTitle'
 
 class Register extends Component {
   constructor(){
@@ -35,7 +36,9 @@ class Register extends Component {
         }
         register(user).then(res => {
           if(res){
-              this.props.history.push(`\login`)
+              this.props.history.push(`/login`);
+          } else {
+            alert('Not today, guy');
           }
         })
   }
@@ -43,8 +46,8 @@ class Register extends Component {
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
-    let passwordValid = this.state.passwordValid;
     let password2Valid = this.state.password2Valid;
+    let passwordValid = this.state.passwordValid;
   switch(fieldName) {
       case 'email':
         emailValid = value.length > 0 && value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -55,7 +58,7 @@ class Register extends Component {
         fieldValidationErrors.password = passwordValid ? '': ' is too short';
         break;
       case 'password2':
-        password2Valid = (this.state.password == this.state.password2);
+        password2Valid = (this.state.password === this.state.password2);
         fieldValidationErrors.password2 = password2Valid ? '' : 'passwords don\'t match';
         break;
       default:
@@ -63,12 +66,13 @@ class Register extends Component {
     }
     this.setState({formErrors: fieldValidationErrors,
                     emailValid: emailValid,
-                    passwordValid: passwordValid
+                    passwordValid: passwordValid,
+                    password2Valid: password2Valid
                   }, this.validateForm);
   }
   validateForm() {
     this.setState({formValid: this.state.emailValid &&
-                              this.state.passwordValid});
+                              this.state.passwordValid && this.state.password2Valid});
   }
 
   errorClass(error) {
@@ -77,6 +81,7 @@ class Register extends Component {
   render() {
       return(
         <div className="container">
+        <PageTitle pageName="Register"/>
           <div className="row">
             <div className="col-md-6-mt-5 mx-auto">
               <form noValidate onSubmit={this.onSubmit}>

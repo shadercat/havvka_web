@@ -7,7 +7,7 @@ export const register = newUser => {
         user_password: newUser.user_password
     })
     .then(res => {
-      console.log("registered")
+      return res.data;
     })
 }
 

@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import Karusel from './components/Karusel'
 import Header from './components/Header'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-import Navbar from './components/Navbar'
 import Login from './components/Login'
 import Register from './components/Register'
 import Landing from './components/Landing'
@@ -21,15 +19,16 @@ render(){
     <Router>
       <div className="App">
       <Header/>
+
+      <Switch>
       <Route exact path="/" component={Landing}/>
-      <div className="container">
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/orgadm" component={OrganizationLogin}/>
       <Route exact path="/cart" component={Cart}/>
       <Route exact path="/dishestop" component={DishesTop}/>
       <Route exact path="/FavouriteDishes" component={FavouriteDishes}/>
-      </div>
+      </Switch>
       <Footer/>
       </div>
     </Router>

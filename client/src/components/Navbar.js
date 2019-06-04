@@ -14,12 +14,12 @@ class Navbar extends Component {
             <ul  className="navbar-nav">
                 <li className="nav-item">
                     <Link to="/login" className="nav-link text-white">
-                        Login
+                        Вход
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/register" className="nav-link text-white">
-                        register
+                        Регистрация
                     </Link>
                 </li>
             </ul>
@@ -29,12 +29,12 @@ class Navbar extends Component {
             <ul  className="navbar-nav">
             <li className="nav-item">
                 <Link to="/FavouriteDishes" className="nav-link text-white">
-                    FavouriteDishes
+                  Избранное
                 </Link>
             </li>
             <li className="nav-item">
                 <Link to="/dishestop" className="nav-link text-white">
-                    DishesTop
+                  Топ блюд
                 </Link>
             </li>
             <li className="nav-item">
@@ -45,12 +45,12 @@ class Navbar extends Component {
 
             <li className="nav-item ">
                 <Link to="/userorders" className=" text-white nav-link">
-                    UserOrders
+                  Заказы
                 </Link>
             </li>
                 <li className="nav-item">
-                    <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
-                        Logout
+                    <a href="/" onClick={this.logOut.bind(this)} className="nav-link text-white">
+                        Выйти
                     </a>
                 </li>
             </ul>
@@ -64,7 +64,7 @@ class Navbar extends Component {
                 </button>
                 <div className="collapse navbar-collapse justify-content-md-center" id="navbar1">
                 <ul className="navbar-nav"><li className="nav-item">
-                <Link to="/" className="nav-link text-white">Home</Link>
+                <Link to="/" className="nav-link text-white">Главная</Link>
                 </li></ul>
                 {localStorage.usertoken?userLink:!localStorage.orgtoken?loginRegLink:<br/>}
                 </div>

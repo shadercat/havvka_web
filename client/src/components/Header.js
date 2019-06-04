@@ -15,7 +15,7 @@ const Header = () => {
         height="30"
         className="d-inline-block align-top"
       />
-      {'HAVVKA'}
+      <div className="brand-text">HAVVKA</div>
     </div>
     <div className="nav-left">
       <Navbar/></div>

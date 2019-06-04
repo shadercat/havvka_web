@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Comfortaa|IBM+Plex+Sans:300|Montserrat|PT+Sans&display=swap');
+
 :root {
     --mainColor: #D81B60;
     --success-green: #2ecebf;
@@ -13,11 +15,12 @@
     /*borders*/
     --no-border: 0px;
     /*fonts*/
-    --normal-font:"Yu Gothic UI";
+    --normal-font:'IBM Plex Sans', sans-serif;
     --attention-font: "Arial Bold", Arial;
 }
 html, body{
   height: 100%;
+  font-family: var(--normal-font);
 }
 
 .navbar .navbar-brand{
@@ -25,6 +28,23 @@ html, body{
 }
 .navbar{
   justify-content: space-between;
+}
+
+.carousel{
+  margin-bottom: 7vh;
+}
+
+.carousel-indicators li{
+  height: 30px;
+  border-radius: 50%;
+}
+
+.carousel-indicators{
+  justify-content: flex-start;
+}
+
+.carousel-caption{
+  width: 15%;
 }
 
 .navbar-expand {
@@ -59,18 +79,55 @@ html, body{
   padding: 0;
   margin: 0.7vh 0px 1.2vh 0px;
 
+  font-family: var(--normal-font), monospace;
+}
+
+.page-title{
+  display: flex;
+    width: 100%;
+    background-color: var(--mainColor);
+    border: 0;
+    color: white;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    height: 12vh;
+    font-size: 5vh;
+    margin-bottom: 10vh;
+    -webkit-box-shadow: 0px 5px 5px 0px var(--gray-color);
+  -moz-box-shadow: 0px 5px 5px 0px var(--gray-color);
+  box-shadow: 0px 5px 5px 0px var(--gray-color);
+}
+
+.brand-text{
+  margin-left: 4vw;
+  font-size: 5vh;
 }
 
 .nav-item, .nav-item:hover{
-  padding: 1.2vh 1.7vh;
+  display: flex;
+  width: 7vw;
+  height: 10vh;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link{
+  font-size: 2vh;
 }
 
 .headernav{
   background-color: white;
+  margin-top: 3vh;
+  margin-bottom: 8vh;
 }
 
 .main-nav{
   background-color: var(--mainColor);
+  -webkit-box-shadow: 0px 5px 5px 0px var(--gray-color);
+-moz-box-shadow: 0px 5px 5px 0px var(--gray-color);
+box-shadow: 0px 5px 5px 0px var(--gray-color);
 }
 
 .btn-outline-primary {
@@ -101,6 +158,7 @@ footer{
   width: 100%;
   text-align: center;
   color: white;
-  margin-top: 40px;
+  margin-top: 10vh;
+  font-size: 2vh;
   padding: 15px;
 }
