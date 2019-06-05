@@ -1,4 +1,14 @@
 import React, { Component } from 'react'
+// import {getAll} from './components/DishFunctions'
+// var DishesInShop = getAll().data;
+//
+// getAll().then(res => {
+//   if(res){
+//           console.log(DishesInShop);
+//   } else {
+//     alert('Not today, guy');
+//   }
+// })
 var DishesInShop = [
   {
     dish_id: 1,
@@ -62,7 +72,9 @@ const DishContext = React.createContext();
 class DishProvider extends Component {
   state = {
     dishesInShop: DishesInShop,
-    detailsDish: DishesInShop[0]
+    detailsDish: DishesInShop[0],
+    dishesInFav: '',
+    dishesInSet: ''
   };
 
   handleDetail = () => {
@@ -73,6 +85,19 @@ class DishProvider extends Component {
     console.log('hello from add to cart');
   }
   render(){
+    //
+    // getAll().then(res => {
+    //   if(res){
+    //     this.state.dishesInShop = res.data;
+    //             console.log(DishesInShop);
+    //   } else {
+    //     alert('Not today, guy');
+    //   }
+    // })
+      console.log(this.state.dishesInShop);
+      console.log(this.state.dishesInShop);
+      console.log(this.props.children);
+
     return(
       <DishContext.Provider value={{
         dishesInShop: this.state.dishesInShop,

@@ -15,8 +15,16 @@ module.exports = db.sequelize.define(
             allowNull: false
         },
         dish_img: {
-            type: Sequelize.STRING,
+            type: Sequelize.STRING
+        },
+        dish_type: {
+            type: Sequelize.INTEGER,
             allowNull: false
+        },
+        dish_price: {
+            type: Sequelize.DOUBLE,
+            allowNull: false,
+            defaultValue: 123456
         },
         dish_long_description: {
            type: Sequelize.STRING,
@@ -26,19 +34,10 @@ module.exports = db.sequelize.define(
           type: Sequelize.STRING,
           allowNull: true
         },
-        dish_price: {
-            type: Sequelize.DOUBLE,
-            allowNull: false,
-            defaultValue: 123456
-        },
         dish_popularity: {
             type: Sequelize.INTEGER,
             allowNull: false,
             defaultValue: 1
-        },
-        dish_type: {
-            type: Sequelize.INTEGER,
-            allowNull: false
         }
     },
     {

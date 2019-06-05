@@ -3,7 +3,7 @@ var router = express.Router();
 const Dish = require("../models/Dish")
 
 // Get All Dishes
-router.get("/dishes", (req, res) => {
+router.get("/all-dishes", (req, res) => {
     Dish.findAll()
         .then(dishes => {
           res.json(dishes)

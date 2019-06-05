@@ -7,7 +7,7 @@ class DishList extends Component{
     return(
       <DishConsumer>
       {value => {
-        return value.dishesInShop.map( dish => {
+        return value.dishesInShop.map(dish => {
           return <Dish key={dish.dish_id} dish={dish}/>;
         })
       }}

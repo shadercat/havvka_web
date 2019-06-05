@@ -9,7 +9,7 @@ class Dish extends Component {
       <div>
       <Link to="/details">
         <div className="dish-el-menu">
-          <img className="dish-img" src={dish_img}/>
+          <img width="150vw" height="150vw" src={dish_img}/>
           <div className="dish-el-menu-description">
             <h3 className="dish-title">{dish_name}</h3>
             <h2 className="dish-price">{dish_price} UAH</h2>

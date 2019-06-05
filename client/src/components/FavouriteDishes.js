@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PageTitle from './PageTitle'
+import DishList from './DishList'
 
 class FavouriteDishes extends Component {
     render(){
@@ -7,14 +8,10 @@ class FavouriteDishes extends Component {
           <div>
           <PageTitle pageName="Избранное"/>
             <div className="container">
-                <div className="jumbotron mt-5">
-                    <div className="col-sm-8 mx-auto">
-                        <div className="text-center">
-                            FavouriteDishes
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div className="row menurow" justify-content="space-around">
+              <DishList/>
+              </div>
+              </div>
             </div>
         )
     }

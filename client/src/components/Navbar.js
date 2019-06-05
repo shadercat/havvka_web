@@ -37,9 +37,15 @@ class Navbar extends Component {
                   Топ блюд
                 </Link>
             </li>
+
+            <li className="nav-item">
+                <Link to="/menu" className="nav-link text-white">
+                  Меню
+                </Link>
+            </li>
             <li className="nav-item">
                 <Link to="/cart" className="nav-link text-white">
-                    Cart
+                    Корзина
                 </Link>
             </li>
 
