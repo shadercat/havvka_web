@@ -73,37 +73,63 @@ class DishProvider extends Component {
   state = {
     dishesInShop: DishesInShop,
     detailsDish: DishesInShop[0],
-    dishesInFav: '',
-    dishesInSet: ''
+    dishesInFav: [],
+    dishesInSet: [],
+    dishesInCart: []
   };
 
-  handleDetail = () => {
-    console.log('hello from detail');
+
+
+  getItem = (id) => {
+    const dish = this.state.dishesInShop.find(item => item.dish_id === id)
+    return dish;
   }
 
-  addToCart = () => {
-    console.log('hello from add to cart');
+  handleDetail = (id) => {
+    const dish = this.getItem(id);
+    this.setState(() => {
+      return {detailsDish: dish}
+    })
+  }
+
+  // findDishInCart = (id, arr) => {
+  //   for(var i = 0; i < arr.length; i++){
+  //     if(arr[i].dish_id == id){
+  //       return arr[i];
+  //     }
+  //   }
+  //   return null;
+  // }
+
+  incrementDishAmount = (id, arr) => {
+    for(var i = 0; i < arr.length; i++){
+      if(arr[i].dish_id == id){
+        arr[i].dish_amount++;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  addToCart = (id) => {
+    if(!this.incrementDishAmount(id, this.state.dishesInCart)){
+      var dish = this.getItem(id);
+      dish.dish_amount = 1;
+      this.state.dishesInCart.push(dish);
+    }
+    console.log(this.state.dishesInCart);
+    this.setState(() => {
+      return {dishesInCart: this.state.dishesInCart}
+    })
   }
   render(){
-    //
-    // getAll().then(res => {
-    //   if(res){
-    //     this.state.dishesInShop = res.data;
-    //             console.log(DishesInShop);
-    //   } else {
-    //     alert('Not today, guy');
-    //   }
-    // })
-      console.log(this.state.dishesInShop);
-      console.log(this.state.dishesInShop);
-      console.log(this.props.children);
-
     return(
       <DishContext.Provider value={{
         dishesInShop: this.state.dishesInShop,
         detailsDish:this.state.detailsDish,
-        handleDetail: this.state.handleDetail,
-        addToCart: this.state.handleDetail}}>
+        dishesInCart: this.state.dishesInCart,
+        handleDetail: this.handleDetail,
+        addToCart: this.addToCart}}>
       {this.props.children}
       </DishContext.Provider>
     )

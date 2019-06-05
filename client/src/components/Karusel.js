@@ -1,9 +1,9 @@
 import React from 'react';
 import '../index.css';
 import {Carousel} from 'react-bootstrap';
-import slide1 from '../images/slide1.svg'
-import slide2 from '../images/slide2.svg'
-import slide3 from '../images/slide3.svg'
+var slide1 = '/images/slide1.svg'
+var slide2 = '/images/slide2.svg'
+var slide3 = '/images/slide3.svg'
 
 class ControlledCarousel extends React.Component {
     constructor(props, context) {

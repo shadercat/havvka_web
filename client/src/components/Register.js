@@ -50,7 +50,7 @@ class Register extends Component {
     let passwordValid = this.state.passwordValid;
   switch(fieldName) {
       case 'email':
-        emailValid = value.length > 0 && value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        emailValid = value.length > 0 && value.match(/^([\w.%+-]+)@nure.ua$/i);
         fieldValidationErrors.email = emailValid ? '' : ' is invalid';
         break;
       case 'password':
