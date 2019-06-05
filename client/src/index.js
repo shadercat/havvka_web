@@ -7,9 +7,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './index.css';
 import App from './App.js'
 import * as serviceWorker from './serviceWorker';
+import {DishProvider} from './context'
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <DishProvider>
+  <App />
+  </DishProvider>,
+   document.getElementById('root'));
 
 
 serviceWorker.unregister();
