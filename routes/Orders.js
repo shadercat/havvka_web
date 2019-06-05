@@ -27,7 +27,7 @@ router.get("/orders/:organization_id", (req, res) => {
   })
 })
 
-
+// Get all orders for user
 router.get("/orders/:user_id", (req, res) => {
   Order.findAll(
     where: {
@@ -57,9 +57,27 @@ router.delete("/orders/:id", (req, res) => {
   })
 })
 
-//Update Order
-router.put("/order/:id", (req, res) => {
-    if (!req.body.task_name) {
+// Add order
+router.post("/orders", (req, res) => {
+  const orderData = {
+    order_total_price: req.body.order_total_price,
+    user_id: req.body.user_id,
+    organization_id: req.body.organization_id
+  }
+
+  Order.create(orderData)
+  .then(order => {
+      res.json({status: order.order_id + ' are processing'})
+  })
+  .catch(err =>
+      res.send("error: " + err)
+  )
+})
+})
+
+//Update Order state by id
+router.put("/orders/:id", (req, res) => {
+    if (!req.body.order_state) {
         res.status(400)
         res.json({
             error: "Bad Data"

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const getAll = () => {
+export const getAllDishes = () => {
   return axios
   .get('./api/dishes/all-dishes')
   .then(res =>{

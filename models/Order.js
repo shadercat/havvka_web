@@ -16,13 +16,19 @@ module.exports = db.sequelize.define(
         },
         organization_id: {
             type: Sequelize.INTEGER,
-            allowNull: false,
-            defaultValue: 123456
+            allowNull: false
         },
-        order_did: {
-            type: Sequelize.INTEGER,
+        order_state: {
+            type: Sequelize.STRING,
             allowNull: false,
-            defaultValue: 1
+            defaultValue: 'Processing'
+        },
+        order_time: {
+            tyoe: Sequelize.DATE //?
+        },
+        order_total_price: {
+          type: Sequelize.DOUBLE,
+          defaultValue: 0.0
         }
     },
     {

@@ -10,19 +10,23 @@ module.exports = db.sequelize.define(
             allowNull: false,
             autoIncrement: true
         },
-        mark_email: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-        mark_password: {
-            type: Sequelize.STRING,
+        mark_date: {
+            type: Sequelize.DATE_TIME,//?
             allowNull: false,
-            defaultValue: 123456
+            defaultValue:
         },
-        mark_did: {
-            type: Sequelize.INTEGER,
+        mark_value: {
+            type: Sequelize.DOUBLE,
             allowNull: false,
             defaultValue: 1
+        },
+        user_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        dish_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false
         }
     },
     {

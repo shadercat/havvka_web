@@ -3,6 +3,10 @@ import Dish from './Dish'
 import {DishConsumer} from '../context'
 
 class DishList extends Component{
+  state = {
+    
+  }
+
   render(){
     return(
       <DishConsumer>

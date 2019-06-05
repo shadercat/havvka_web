@@ -17,7 +17,7 @@ class DishesTop extends Component {
                 </div>
                 </div>
                   <div className="container">
-                  <h1>По популярности за</h1>
+                  <h1>По выставленным оценкам</h1>
                     <div className="row menurow" justify-content="space-around">
                       <DishList/>
                       </div>

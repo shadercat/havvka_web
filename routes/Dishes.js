@@ -22,7 +22,7 @@ router.post('/dish', (req, res) => {
         dish_short_description: req.body.dish_short_description,
         dish_type: req.body.dish_type,
         dish_price: req.body.dish_price,
-        organization_id: req.body.organization_id
+        dish_img: req.body.dish_img
     }
     Dish.create(dishData)
                 .then(dish => {
