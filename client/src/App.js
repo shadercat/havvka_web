@@ -10,6 +10,7 @@ import OrganizationLogin from './components/OrganizationLogin'
 import Cart from './components/Cart'
 import DishesTop from './components/DishesTop'
 import FavouriteDishes from './components/FavouriteDishes'
+import OrganizationRegister from './components/OrganizationRegister'
 
 import './App.css';
 
@@ -25,6 +26,7 @@ render(){
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/orgadm" component={OrganizationLogin}/>
+      <Route exact path="/orgadm/register" component={OrganizationRegister}/>
       <Route exact path="/cart" component={Cart}/>
       <Route exact path="/dishestop" component={DishesTop}/>
       <Route exact path="/FavouriteDishes" component={FavouriteDishes}/>

@@ -16,7 +16,6 @@ app.use('/users', Users)
 app.use('/organizations', Organizations)
 app.get('/', (req, res) => ('./client/src/App.js'))
 app.use('/api', Dishes)
-app.get('/orgadm', (req, res) => ('./client/src/OrganizationLogin.js'))
 
 app.listen(port, () => {
     console.log("Server is running on port: " + port)

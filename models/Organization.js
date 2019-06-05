@@ -16,13 +16,11 @@ module.exports = db.sequelize.define(
         },
         organization_location: {
             type: Sequelize.STRING,
-            allowNull: false,
-            defaultValue: 123456
+            allowNull: false
         },
         organization_email: {
             type: Sequelize.STRING,
-            allowNull: false,
-            defaultValue: 1
+            allowNull: false
         },
         organization_password:{
           type: Sequelize.STRING,
