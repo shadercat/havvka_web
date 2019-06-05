@@ -21,7 +21,6 @@ class Details extends Component{
 
       return (
         <div>
-
           <PageTitle pageName="Информация о блюде"/>
         <div className="container">
           <div className="container-details">
@@ -47,7 +46,11 @@ class Details extends Component{
                     </div>
                     <h2 className="text-right">{dish_price} UAH</h2>
                     <div>
-                      <button className="btn-primary" width="150vw">В корзину</button>
+                      <Link to="/cart">
+                      <button onClick={() => value.addToCart(dish_id)} className="btn-primary" width="150vw">
+                      В корзину
+                      </button>
+                      </Link>
                       </div>
                     </div>
                     </div>

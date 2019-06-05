@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PageTitle from './PageTitle'
+import DishList from './DishList'
 
 class Cart extends Component {
     render(){
@@ -11,7 +12,7 @@ class Cart extends Component {
                 <div className="jumbotron mt-5">
                     <div className="col-sm-8 mx-auto">
                         <div className="text-center">
-                            Cart
+                            <DishList aim="cart"/>
                         </div>
                     </div>
                 </div>
