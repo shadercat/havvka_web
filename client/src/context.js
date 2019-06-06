@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {getAllDishes} from './components/DishFunctions'
+import jwt_decode from 'jwt-decode'
+import {getAllDishes, getFavouriteDishes} from './components/DishFunctions'
 
 // var DishesInShop = [
 //   {
@@ -63,22 +64,27 @@ const DishContext = React.createContext();
 
 class DishProvider extends Component {
   state = {
-<<<<<<< HEAD
     dishesInShop: [],
     detailsDish: {},
     dishesInFav: [],
-    dishesInSet: []
+    dishesInSet: [],
+    dishesInCart: [],
+    userId: 0
   };
 
+
   componentDidMount = () => {
-    this.loadData();
+    var token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    var id = decoded.user_id;
+    this.setState({
+      userId: id
+    })
+    this.loadData(id);
   }
 
-  handleDetail = () => {
-    console.log('hello from detail');
-  }
 
-  loadData = () => {
+  loadData = (id) => {
     getAllDishes().then(res => {
       if(res){
       this.setState(
@@ -87,24 +93,19 @@ class DishProvider extends Component {
         }
       )
     }
-    })
+  })
     if(localStorage.usertoken){
-
+        getFavouriteDishes(id).then(res => {
+          if(res){
+            this.setState(
+              {
+                dishesInFav: res.data
+              }
+            )
+          }
+        })
     }
   }
-
-  addToCart = () => {
-    console.log('hello from add to cart');
-  }
-=======
-    dishesInShop: DishesInShop,
-    detailsDish: DishesInShop[0],
-    dishesInFav: [],
-    dishesInSet: [],
-    dishesInCart: []
-  };
-
-
 
   getItem = (id) => {
     const dish = this.state.dishesInShop.find(item => item.dish_id === id)
@@ -117,15 +118,6 @@ class DishProvider extends Component {
       return {detailsDish: dish}
     })
   }
-
-  // findDishInCart = (id, arr) => {
-  //   for(var i = 0; i < arr.length; i++){
-  //     if(arr[i].dish_id == id){
-  //       return arr[i];
-  //     }
-  //   }
-  //   return null;
-  // }
 
   incrementDishAmount = (id, arr) => {
     for(var i = 0; i < arr.length; i++){
@@ -148,12 +140,13 @@ class DishProvider extends Component {
       return {dishesInCart: this.state.dishesInCart}
     })
   }
->>>>>>> ce82b0f4dc99c1f8a535e36d241450d213c1ceae
+
   render(){
     return(
       <DishContext.Provider value={{
         dishesInShop: this.state.dishesInShop,
         detailsDish:this.state.detailsDish,
+        dishesInFav: this.state.dishesInFav,
         dishesInCart: this.state.dishesInCart,
         handleDetail: this.handleDetail,
         addToCart: this.addToCart}}>

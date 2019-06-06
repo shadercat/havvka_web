@@ -13,6 +13,7 @@ router.get("/orders", (req, res) => {
         })
 });
 
+// Get all orders for organization
 router.get("/orders/:organization_id", (req, res) => {
   Order.findAll(
     where: {
@@ -62,7 +63,8 @@ router.post("/orders", (req, res) => {
   const orderData = {
     order_total_price: req.body.order_total_price,
     user_id: req.body.user_id,
-    organization_id: req.body.organization_id
+    organization_id: req.body.organization_id,
+    order_time: req.body.order_time
   }
 
   Order.create(orderData)

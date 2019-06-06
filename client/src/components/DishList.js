@@ -4,11 +4,7 @@ import {DishConsumer} from '../context'
 
 class DishList extends Component{
   state = {
-<<<<<<< HEAD
-    
-=======
     aim: 'menu' // menu, top, main1, main2, favourite(sets), cart
->>>>>>> ce82b0f4dc99c1f8a535e36d241450d213c1ceae
   }
 
   render(){
@@ -23,6 +19,10 @@ class DishList extends Component{
           return value.dishesInCart.map(dish => {
             return <Dish key={dish.dish_id} dish={dish}/>;
           })
+        } else if(this.props.aim == 'favourites'){
+            return value.dishesInFav.map(dish => {
+              return <Dish key={dish.dish_id} dish={dish}/>;
+            })
         }
       }}
       </DishConsumer>

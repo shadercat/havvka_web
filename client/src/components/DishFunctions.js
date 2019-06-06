@@ -6,3 +6,11 @@ export const getAllDishes = () => {
   .then(res =>{
   return res});
 }
+
+export const getFavouriteDishes = (id) => {
+  return axios
+  .get('./api/dishes/favourite-dishes/'+id)
+  .then(res =>{
+    return res
+  });
+}

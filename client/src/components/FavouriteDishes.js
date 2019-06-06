@@ -9,7 +9,7 @@ class FavouriteDishes extends Component {
           <PageTitle pageName="Избранное"/>
             <div className="container">
             <div className="row menurow" justify-content="space-around">
-              <DishList/>
+              <DishList aim="favourites"/>
               </div>
               </div>
             </div>
