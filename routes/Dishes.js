@@ -37,6 +37,20 @@ router.post('/dish', (req, res) => {
     })
 })
 
+router.get("/dish-type/:dish_type", (req, res) => {
+  Dish.findAll({
+      where: {
+          dish_type: req.params.dish_type
+      }
+  })
+      .then(dishes => {
+        res.json(dishes)
+      })
+      .catch(err => {
+        res.send("error: " + err)
+      })
+})
+
 
 // Get All Favourite dishes for user
 router.get("/favourite-dishes/:user_id", (req, res) => {

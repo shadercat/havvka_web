@@ -16,12 +16,13 @@ class DishProvider extends Component {
 
 
   componentDidMount = () => {
+    if(localStorage.usertoken){
     var token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     var id = decoded.user_id;
     this.setState({
       userId: id
-    })
+    })}
     this.loadData(id);
   }
 
