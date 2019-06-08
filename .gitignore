@@ -3,3 +3,5 @@ node_modules/
 
 # Ignore folder named `client\node_modules`
 client/node_modules/
+
+.vscode/
