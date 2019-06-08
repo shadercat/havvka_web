@@ -13,30 +13,26 @@ class Menu extends Component {
       <div className="container">
       <h1>Первое</h1>
         <div className="row menurow" justify-content="space-around">
-          <DishList aim="menu"/>
+          <DishList aim="menu" category="1" limit="6"/>
         </div>
-        <Link to="/first">Еще</Link>
-        </div>
-        <div className="container">
-      <h2>Второе</h2>
-      <div className="row menurow" justify-content="space-around">
-        <DishList aim="menu"/>
-        </div>
-        <Link to="/first">Еще</Link>
         </div>
         <div className="container">
-      <h2>Третье</h2>
+      <h1>Второе</h1>
       <div className="row menurow" justify-content="space-around">
-        <DishList aim="menu"/>
+        <DishList aim="menu" category="2" limit="6"/>
         </div>
-        <Link to="/first">Еще</Link>
+        </div>
+        <div className="container">
+      <h1>Третье</h1>
+      <div className="row menurow" justify-content="space-around">
+        <DishList aim="menu" category="3" limit="6"/>
+        </div>
       </div>
       <div className="container">
-      <h2>Напитки</h2>
+      <h1>Напитки</h1>
       <div className="row menurow" justify-content="space-around">
-        <DishList aim="menu"/>
+        <DishList aim="menu" category="4" limit="6"/>
         </div>
-        <Link to="/first">Еще</Link>
       </div>
 </div></div>
       </div>

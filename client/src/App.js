@@ -12,10 +12,6 @@ import Cart from './components/Cart'
 import DishesTop from './components/DishesTop'
 import FavouriteDishes from './components/FavouriteDishes'
 import Menu from './components/Menu'
-import MenuFirst from './components/MenuFirst'
-import MenuSecond from './components/MenuSecond'
-import MenuThird from './components/MenuThird'
-import MenuForth from './components/MenuForth'
 import Details from './components/Details'
 import './App.css';
 
@@ -27,14 +23,9 @@ render(){
       <Header/>
 
       <Switch>
-      // <Route exact path="/details" component={Details}/>
+      <Route exact path="/details" component={Details}/>
       <Route exact path="/" component={Landing}/>
       <Route exact path="/menu" component={Menu}/>
-      <Route exact path="/menu/first" component={MenuFirst}/>
-      <Route exact path="/menu/second" component={MenuSecond}/>
-      <Route exact path="/menu/third" component={MenuThird}/>
-      <Route exact path="/menu/forth" component={MenuForth}/>
-
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/orgadm" component={OrganizationLogin}/>

@@ -37,11 +37,31 @@ router.post('/dish', (req, res) => {
     })
 })
 
-router.get("/dish-type/:dish_type", (req, res) => {
+router.get("/dish", (req, res) => {
+  Dish.findOne({
+    where: {
+      dish_name: req.query.dish_name
+    }
+  })
+  .then(dish => {
+    res.json(dish)
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
+// Get all dishes by dish type
+router.get("/category-menu", (req, res) => {
+var limit = 300;
+  if(req.query.limit){
+    limit = Number.parseInt(req.query.limit);
+  }
   Dish.findAll({
       where: {
-          dish_type: req.params.dish_type
-      }
+          dish_type: req.query.dish_type
+        },
+      limit: limit
   })
       .then(dishes => {
         res.json(dishes)

@@ -2,8 +2,29 @@ import React, {Component} from 'react'
 import {DishConsumer} from '../context'
 import {Link} from 'react-router-dom'
 import PageTitle from './PageTitle'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import RateDiv from './RateDiv'
 
 class Details extends Component{
+  constructor(){
+    super();
+      this.handleShow = this.handleShow.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+
+      this.state = {
+        show: false,
+      };
+    }
+
+    handleClose() {
+      this.setState({ show: false });
+    }
+
+    handleShow() {
+      this.setState({ show: true });
+    }
+
   render(){
     return (
       <DishConsumer>
@@ -32,8 +53,8 @@ class Details extends Component{
                     <div className="row">
                       <h1>{dish_name}</h1>
                       <div className="like-set">
-                        <img src="./images/popularity.png" width="30px"/>
-                        <img src="./images/popularity.png" width="30px"/>
+                        <img src="./images/add.png" width="16px"/>
+                        <img src="./images/like.png" width="30px"/>
                       </div>
                     </div>
                       <p>{dish_long_description}</p>
@@ -42,16 +63,33 @@ class Details extends Component{
                         <img src="./images/popularity.png" width="30px"/>
                         {dish_popularity}
                       </div>
-                      *****
+                      <RateDiv/>
                     </div>
                     <h2 className="text-right">{dish_price} UAH</h2>
                     <div>
-                      <Link to="/cart">
-                      <button onClick={() => value.addToCart(dish_id)} className="btn-primary" width="150vw">
+                    <div onClick={this.handleShow}>
+                      <button  onClick={() => value.addToCart(dish_id)} className="btn-primary" width="150vw">
                       В корзину
                       </button>
-                      </Link>
                       </div>
+                      </div>
+                      <Modal show={this.state.show} onHide={this.handleClose}>
+                            <Modal.Header closeButton onClick={this.handleClose}>
+                            </Modal.Header>
+                            <Modal.Body>Блюдо добавлено в корзину</Modal.Body>
+                            <Modal.Footer>
+                            <Button variant="secondary" onClick={this.handleClose}>
+                            Продолжить покупки
+                            </Button>
+                            <Link to="/cart">
+                              <Button variant="primary">
+                                Корзина
+                              </Button>
+                              </Link>
+                            </Modal.Footer>
+                          </Modal>
+
+
                     </div>
                     </div>
             </div>
