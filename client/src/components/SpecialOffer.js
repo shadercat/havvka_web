@@ -12,11 +12,8 @@ class SpecialOffer extends Component{
             dish_id,
             dish_name,
             dish_img,
-            dish_type,
             dish_price,
-            dish_short_description,
             dish_long_description,
-            dish_popularity
           } = value.detailsDish;
 
         return (

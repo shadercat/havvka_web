@@ -23,6 +23,15 @@ html, body{
   font-family: var(--normal-font);
 }
 
+.far .fa-heart{
+  background-color: none;
+  display: none;
+}
+
+.far .fa-heart:hover{
+  background-image: url(/img/like.png);
+}
+
 #special-offer{
   margin-bottom: 7vh;
 }
@@ -39,6 +48,10 @@ html, body{
 }
 
 
+div > .cart-item{
+  margin-bottom: 2vh;
+}
+
 .cart-item{
   color: var(--black-color);
   background-color: white;
@@ -48,7 +61,6 @@ html, body{
   margin-left: 0.5%;
   padding-right: 2vw;
   border-radius: 1vh;
-  margin-bottom: 2vh;
 }
 
 .rec-producer{
@@ -263,6 +275,18 @@ p{
   border-radius: 50%;
   margin-bottom: 2vh;
 }
+
+a.row.cart-item {
+  width: 85%;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.btn-primary, .btn-primary-havvka{
+  border-radius: 1vh;
+  padding: 2vh 3vh;
+}
+
 
 .column main2-rec-el > h1 {
   font-size: 2vh;

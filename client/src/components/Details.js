@@ -11,11 +11,16 @@ class Details extends Component{
     super();
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
-
+      this.handleLike = this.handleLike.bind(this);
       this.state = {
         show: false,
+        liked: false
       };
     }
+
+handleLike = () => {
+
+}
 
     handleClose() {
       this.setState({ show: false });
@@ -29,15 +34,14 @@ class Details extends Component{
     return (
       <DishConsumer>
       {value => {
-        const {
+        var {
           dish_id,
           dish_name,
           dish_img,
-          dish_type,
           dish_price,
-          dish_short_description,
           dish_long_description,
-          dish_popularity
+          dish_popularity,
+          dish_liked
         } = value.detailsDish;
 
       return (
@@ -54,7 +58,7 @@ class Details extends Component{
                       <h1>{dish_name}</h1>
                       <div className="like-set">
                         <img src="./images/add.png" width="16px"/>
-                        <img src="./images/like.png" width="30px"/>
+                        <a id="liked" className={dish_liked?'fas fa-heart':'far fa-heart'} onClick={() => {value.addToFavourites(dish_id)}} />
                       </div>
                     </div>
                       <p>{dish_long_description}</p>

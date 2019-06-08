@@ -41,28 +41,6 @@ class Dish extends Component {
             </div>
           </div>
     );
-    const favourite = (
-          <div className="main1-view-dish">
-            <img width="150vw" height="150vw" border-radius="50%" src={dish_img}/>
-            <div className="dish-el-menu-description">
-              <p className="main-view-dish">{dish_short_description}</p>
-              <h3>{dish_price} UAH</h3>
-            </div>
-          </div>
-        );
-
-    const cart = (
-      <div className="column">
-          <div className="row cart-item">
-            <img width="150vw" height="150vw" border-radius="50%" src={dish_img}/>
-            <h3>{dish_name}</h3>
-              <h3>{dish_price} UAH</h3>
-              <h3>{dish_amount}</h3>
-              <h3>{dish_price*dish_amount} UAH</h3>
-              <img src="./images/delete.png" height="32px"/>
-            </div>
-            </div>
-        );
 
     switch(this.props.view){
       case 'main1': {
@@ -71,14 +49,6 @@ class Dish extends Component {
       }
       case 'main2': {
         view = main2;
-        break;
-      }
-      case 'favourite': {
-        view = favourite;
-        break;
-      }
-      case 'cart': {
-        view = cart;
         break;
       }
     }

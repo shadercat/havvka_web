@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const Favourite = require("../models/Favourite")
 const Dish = require("../models/Dish")
 var db = require('../database/db')
 
@@ -13,6 +14,34 @@ router.get("/all-dishes", (req, res) => {
           res.send("error: " + err)
         })
 });
+
+router.post('/like:dish_id&:user_id', (req, res) => {
+  const favouriteData = {
+    dish_id: req.params.dish_id,
+    user_id: req.params.user_id
+  }
+  Favourite.create(favouriteData)
+    .then(favourite => {
+      res.json({status: 'liked'})
+    })
+    .catch(err =>{
+      res.send("error: " + err)
+    })
+})
+
+router.post('/like:dish_id&:user_id', (req, res) => {
+  const favouriteData = {
+    dish_id: req.params.dish_id,
+    user_id: req.params.user_id
+  }
+  Favourite.create(favouriteData)
+    .then(favourite => {
+      res.json({status: 'liked'})
+    })
+    .catch(err =>{
+      res.send("error: " + err)
+    })
+})
 
 // Add dish
 router.post('/dish', (req, res) => {

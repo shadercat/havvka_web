@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import {getAllDishes, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
+import {getAllDishes, likeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
 
 const DishContext = React.createContext();
 
@@ -84,9 +84,14 @@ class DishProvider extends Component {
     if(localStorage.usertoken){
         getFavouriteDishes(id).then(res => {
           if(res){
+            var arr = [];
+            for(let dish of res.data){
+              dish.dish_liked = true;
+              arr.push(dish);
+            }
             this.setState(
               {
-                dishesInFav: res.data
+                dishesInFav: arr
               }
             )
           }
@@ -98,6 +103,37 @@ class DishProvider extends Component {
     var dish = this.getItem(id);
     this.state.specialOffer.push(dish);
   }
+
+deleteFromCart = (id) => {
+  var index = this.state.dishesInCart.indexOf(this.getItem(id));
+  this.state.dishesInCart.splice(index,1);
+}
+
+deleteFromFavourites = (id) => {
+  var index = this.state.dishesInFav.indexOf(this.getItem(id));
+  this.state.dishesInFav.splice(index,1);
+}
+
+isHere = (id, arr) => {
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i].dish_id === id){
+      return true;
+    }
+  }
+  return false;
+}
+
+addToFavourites = (id) => {
+  var dish = this.getItem(id);
+  if(this.isHere(id, this.state.dishesInFav)){
+    this.deleteFromFavourites(id);
+      dish.dish_liked = false;
+  }else{
+    dish.dish_liked = true;
+    this.state.dishesInFav.push(dish);
+    likeDish(id,this.state.userId);
+  }
+}
 
   getItem = (id) => {
     const dish = this.state.dishesInShop.find(item => item.dish_id === id)
@@ -135,9 +171,6 @@ class DishProvider extends Component {
       dish.dish_amount = 1;
       this.state.dishesInCart.push(dish);
     }
-    this.setState(() => {
-      return {dishesInCart: this.state.dishesInCart}
-    })
   }
 
   render(){
@@ -153,6 +186,10 @@ class DishProvider extends Component {
         forthDishes: this.state.forthDishes,
         handleDetail: this.handleDetail,
         addToCart: this.addToCart,
+        addToFavourites: this.addToFavourites,
+        isHere: this.isHere,
+        deleteFromFavourites: this.deleteFromFavourites,
+        deleteFromCart: this.deleteFromCart,
       viewDishCategory: this.viewDishCategory}}>
       {this.props.children}
       </DishContext.Provider>

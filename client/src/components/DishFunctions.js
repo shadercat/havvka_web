@@ -15,6 +15,14 @@ export const getAllDishesByCategory = (type, limit) => {
   });
 }
 
+export const likeDish = (id, userid) => {
+  return axios
+  .post('./api/dishes/like'+id+'&'+userid)
+  .then(res => {
+    return res
+  });
+}
+
 export const getFavouriteDishes = (id) => {
   return axios
   .get('./api/dishes/favourite-dishes/'+id)

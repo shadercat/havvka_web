@@ -13,13 +13,13 @@ class DishesTop extends Component {
             <div className="container">
             <h1>По популярности за</h1>
               <div className="row menurow" justify-content="space-around">
-                <DishList/>
+                <DishList aim="menu" limit="2"/>
                 </div>
                 </div>
                   <div className="container">
                   <h1>По выставленным оценкам</h1>
                     <div className="row menurow" justify-content="space-around">
-                      <DishList/>
+                      <DishList aim="menu" limit="100"/>
                       </div>
             </div>
             </div>

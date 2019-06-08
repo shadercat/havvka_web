@@ -1,12 +1,17 @@
 import React, {Component} from 'react'
 import PageTitle from './PageTitle'
-import DishList from './DishList'
+import CartList from './CartList'
+import {DishConsumer} from '../context'
 
 class Cart extends Component {
     render(){
         return (
-
-            <div>
+          <DishConsumer>
+          {value => {if(value.dishesInCart.length > 0){
+            var total = 0;
+            value.dishesInCart.map(dish => {total += (dish.dish_amount*dish.dish_price)});
+            console.log(total);
+            return (<div>
             <PageTitle pageName="Корзина"/>
             <div className="container">
                 <div className="jumbotron mt-5">
@@ -22,12 +27,30 @@ class Cart extends Component {
                                   <div></div>
                                 </div>
                                 </div>
-                            <DishList aim="cart"/>
-                        </div>
+                            <CartList aim="cart"/>
+                            <div className="text-right"><h1>Итого:{total} UAH</h1>
+                            <button className="btn-primary">Оформить заказ</button>
+                        </div></div>
 
                 </div>
             </div>
+            </div>)
+          }else{
+          return  (
+            <div>
+            <PageTitle pageName="Корзина"/>
+            <div className="container">
+                <div className="jumbotron mt-5">
+                        <div className="text-center">
+                          Sorry, but you cart is empty
+                          </div>
+                          </div>
+                    </div>
             </div>
+          )
+          }}
+          }
+            </DishConsumer>
         )
     }
 }
