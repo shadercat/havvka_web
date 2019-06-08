@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {DishConsumer} from '../context'
+import {Link} from 'react-router-dom'
 
 class SpecialOffer extends Component{
   render(){
@@ -37,11 +38,11 @@ class SpecialOffer extends Component{
                       </div>
                       <h2 className="text-right">{dish_price} UAH</h2>
                       <div>
-                      <div onClick={this.handleShow}>
+                      <Link to="/details" onClick={() => value.handleDetail(dish_id)}>
                         <button  onClick={() => value.addToCart(dish_id)} className="btn-primary-havvka" width="150vw">
                         ХОЧУ
                         </button>
-                        </div>
+                        </Link>
                         </div>
 
 

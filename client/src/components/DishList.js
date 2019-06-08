@@ -45,7 +45,7 @@ class DishList extends Component{
         } else if(this.props.aim === 'cart'){
           return value.dishesInCart.map(dish => {
             if(dish.dish_id > this.props.limit) return;
-            return <Dish key={dish.dish_id} dish={dish}/>;
+            return <Dish key={dish.dish_id} dish={dish} view='cart'/>;
           })
         } else if(this.props.aim === 'favourites'){
             return value.dishesInFav.map(dish => {
@@ -59,7 +59,8 @@ class DishList extends Component{
           })
         } else if(this.props.aim === 'main2'){
           return value.dishesInShop.map(dish => {
-            if(dish.dish_id > this.props.limit) return;
+            if(dish.dish_id < this.props.limit) return;
+            if(dish.dish_id > 10) return;
             return <Dish key={dish.dish_id} dish={dish} view='main2'/>;
           })
         }

@@ -6,7 +6,7 @@ import RateDiv from './RateDiv'
 
 class Dish extends Component {
   render(){
-    const {dish_id,dish_name,dish_img,dish_type,dish_price,dish_short_description,dish_long_description,dish_popularity} = this.props.dish;
+    const {dish_id,dish_name,dish_img,dish_type,dish_price,dish_short_description,dish_long_description,dish_popularity,dish_amount} = this.props.dish;
     var view = (
     <div className="dish-el-menu">
         <img width="150vw" height="150vw" src={dish_img}/>
@@ -22,7 +22,26 @@ class Dish extends Component {
           </div>
         </div>
         </div>);
+
+    const main2 = (
+      <div className="column main2-rec-el">
+      <img width="150vw" height="150vw" border-radius="50%" src={dish_img}/>
+      <h2>{dish_name}</h2>
+      <h3>{dish_price} UAH</h3>
+      </div>
+    );
+
     const main1 = (
+          <div className="main1-view-dish">
+            <img width="150vw" height="150vw" border-radius="50%" src={dish_img}/>
+            <div className="dish-el-menu-description">
+              <h2>{dish_name}</h2>
+              <p className="main-view-dish">{dish_short_description}</p>
+              <h3>{dish_price} UAH</h3>
+            </div>
+          </div>
+    );
+    const favourite = (
           <div className="main1-view-dish">
             <img width="150vw" height="150vw" border-radius="50%" src={dish_img}/>
             <div className="dish-el-menu-description">
@@ -30,10 +49,36 @@ class Dish extends Component {
               <h3>{dish_price} UAH</h3>
             </div>
           </div>
-    );
+        );
+
+    const cart = (
+      <div className="column">
+          <div className="row cart-item">
+            <img width="150vw" height="150vw" border-radius="50%" src={dish_img}/>
+            <h3>{dish_name}</h3>
+              <h3>{dish_price} UAH</h3>
+              <h3>{dish_amount}</h3>
+              <h3>{dish_price*dish_amount} UAH</h3>
+              <img src="./images/delete.png" height="32px"/>
+            </div>
+            </div>
+        );
+
     switch(this.props.view){
       case 'main1': {
         view = main1;
+        break;
+      }
+      case 'main2': {
+        view = main2;
+        break;
+      }
+      case 'favourite': {
+        view = favourite;
+        break;
+      }
+      case 'cart': {
+        view = cart;
         break;
       }
     }
@@ -46,6 +91,7 @@ class Dish extends Component {
             </Link>
             </div>
       )}
+
 
       </DishConsumer>
     )

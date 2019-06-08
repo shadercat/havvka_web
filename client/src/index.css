@@ -27,6 +27,30 @@ html, body{
   margin-bottom: 7vh;
 }
 
+.cart-item-title{
+  color: var(--black-color);
+  align-items: center;
+  justify-content: space-around;
+  padding: 0vh 3vw;
+  margin-right: 2vw;
+  padding-bottom: 5vh;
+  margin-bottom: 5vh;
+
+}
+
+
+.cart-item{
+  color: var(--black-color);
+  background-color: white;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-left: 0.5%;
+  padding-right: 2vw;
+  border-radius: 1vh;
+  margin-bottom: 2vh;
+}
+
 .rec-producer{
   margin-top: 2%;
   margin-bottom: 7.5%;
@@ -223,6 +247,37 @@ p{
   margin: 0.7vh 0px 1.2vh 0px;
 
   font-family: var(--normal-font), monospace;
+}
+
+.rec-main2{
+  margin-top: -10vh;
+  margin-bottom: -10vh;
+}
+
+.main2-rec-el{
+  margin: 10vh 4vw;
+  text-align: center;
+}
+
+.main2-rec-el > img {
+  border-radius: 50%;
+  margin-bottom: 2vh;
+}
+
+.column main2-rec-el > h1 {
+  font-size: 2vh;
+}
+
+.column main2-rec-el > h2, h3 {
+  font-size: 3vh;
+}
+
+.rec-producer > .bg-gray > div > a {
+  color: var(--black-color);
+}
+
+.main2-rec-el:hover > img{
+  opacity: 0.6;
 }
 
 .page-title{

@@ -17,6 +17,9 @@ class Landing extends Component {
             </div>
             </div>
             <PageTitle pageName="Рекомендации"/>
+            <div className="row bg-gray rec-main2">
+            <DishList aim='main2' limit="6"/>
+            </div>
             </div>
         )
     }
