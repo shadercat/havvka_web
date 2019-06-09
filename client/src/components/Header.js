@@ -8,14 +8,14 @@ const Header = () => {
 
 
     <div className="navbar-brand">
-      <img
+      {/* <img
         alt=""
         src=""
         width="30"
         height="30"
         className="d-inline-block align-top"
-      />
-      <div className="brand-text">HAVVKA</div>
+      /> */}
+      <div className="brand-text"><h1>HAVVKA</h1></div>
     </div>
     <div className="nav-left">
       <Navbar/></div>

@@ -44,6 +44,11 @@ class Navbar extends Component {
                 </Link>
             </li>
             <li className="nav-item">
+                <Link to="/usersets" className="nav-link text-white">
+                  Сеты
+                </Link>
+            </li>
+            <li className="nav-item">
                 <Link to="/cart" className="nav-link text-white">
                     Корзина
                 </Link>
