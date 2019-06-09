@@ -5,6 +5,7 @@ import PageTitle from './PageTitle'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import RateDiv from './RateDiv'
+import OrganizationsList from './OrganizationsList'
 
 class Details extends Component{
   constructor(){
@@ -41,9 +42,35 @@ handleLike = () => {
           dish_price,
           dish_long_description,
           dish_popularity,
-          dish_liked
+          dish_liked,
+          availability
         } = value.detailsDish;
-
+        if(dish_liked == null) {
+          dish_liked = false;
+        }
+        var avList;
+        if(availability != null){
+          avList = (
+            <div>
+            <h2 className="mt-5">В наличии в</h2>
+            <div className="jumbotron mt-3 pt-3">
+            <div className="col-sm-8">
+            <div className="text-center">
+            <OrganizationsList/>
+            </div>
+            </div>
+            </div>
+          </div>
+      );
+      } else {
+          avList = (<div>
+          <div className="jumbotron mt-3 pt-10 pt-auto">
+          <div className="col-sm-8">
+          <div className="text-center">
+          <h2>Нет в наличии</h2>
+          </div></div></div>
+          </div>);
+      }
       return (
         <div>
           <PageTitle pageName="Информация о блюде"/>
@@ -96,16 +123,10 @@ handleLike = () => {
 
                     </div>
                     </div>
-            </div>
-            <div className="jumbotron mt-5">
-                <div className="col-sm-8">
-                    <div className="text-center">
-                        Cart
                     </div>
+                    {avList}
                 </div>
             </div>
-
-          </div></div>
 
       )
     }

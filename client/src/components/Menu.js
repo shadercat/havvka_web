@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import DishList from './DishList'
 import PageTitle from './PageTitle'
-import {Link} from 'react-router-dom'
 
 class Menu extends Component {
   render(){

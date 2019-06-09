@@ -1,15 +1,16 @@
 const express = require('express')
-const users = express.Router()
+const router = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+var db = require('../database/db')
 
 const Orgs = require("../models/Organization")
-users.use(cors())
+router.use(cors())
 
 process.env.SECRET_KEY = 'secret'
 
-users.post('/register', (req, res) => {
+router.post('/register', (req, res) => {
     // const today = new Date()
     const orgData = {
         organization_email: req.body.organization_email,
@@ -44,8 +45,19 @@ users.post('/register', (req, res) => {
     })
 })
 
-users.post('/login', (req, res) => {
-    User.findOne({
+router.get('/dish-av-org:dish_id', (req, res) => {
+  db.sequelize.query('SELECT `organizations`.* FROM (`organizations` LEFT JOIN `availability` ON `availability`.`organization_id` = `organizations`.`organization_id`) LEFT JOIN `dishes` ON `dishes`.`dish_id` = `availability`.`dish_id` ' +
+  'WHERE `dishes`.`dish_id` = ' + req.params.dish_id + ';', Orgs)
+  .then(results => {
+    res.json(results[0]);
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
+router.post('/login', (req, res) => {
+    Orgs.findOne({
         where: {
             organization_email: req.body.organization_email
         }
@@ -67,4 +79,4 @@ users.post('/login', (req, res) => {
     })
 })
 
-module.exports = users
+module.exports = router

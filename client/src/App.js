@@ -14,7 +14,9 @@ import DishesTop from './components/DishesTop'
 import FavouriteDishes from './components/FavouriteDishes'
 import Menu from './components/Menu'
 import Details from './components/Details'
+import UserOrders from './components/UserOrders'
 import './App.css';
+
 
 class App extends Component {
 render(){
@@ -26,6 +28,7 @@ render(){
       <Switch>
       <Route exact path="/details" component={Details}/>
       <Route exact path="/" component={Landing}/>
+      <Route exact path="/userorders" component={UserOrders}/>
       <Route exact path="/menu" component={Menu}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/usersets" component={UserSets}/>

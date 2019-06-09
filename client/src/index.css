@@ -29,6 +29,10 @@ html, body{
   display: none;
 }
 
+.column .main2-rec-el > h1,  h3 {
+  color: var(--black-color);
+}
+
 .far .fa-heart:hover{
   background-image: url(/img/like.png);
 }

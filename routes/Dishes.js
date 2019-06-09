@@ -29,6 +29,22 @@ router.post('/like:dish_id&:user_id', (req, res) => {
     })
 })
 
+router.delete('/dislike:dish_id&:user_id', (req, res) => {
+  Favourite.destroy({
+    where: {
+      dish_id: req.params.dish_id,
+      user_id: req.params.user_id
+    }
+  })
+  .then(() => {
+    res.json({status: 'disliked'})
+  })
+  .catch(err =>{
+    res.send("error: " + err)
+  })
+})
+
+//like
 router.post('/like:dish_id&:user_id', (req, res) => {
   const favouriteData = {
     dish_id: req.params.dish_id,

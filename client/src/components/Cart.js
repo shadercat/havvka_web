@@ -9,8 +9,7 @@ class Cart extends Component {
           <DishConsumer>
           {value => {if(value.dishesInCart.length > 0){
             var total = 0;
-            value.dishesInCart.map(dish => {total += (dish.dish_amount*dish.dish_price)});
-            console.log(total);
+            value.dishesInCart.map(dish => { return total += (dish.dish_amount*dish.dish_price)});
             return (<div>
             <PageTitle pageName="Корзина"/>
             <div className="container">
