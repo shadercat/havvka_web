@@ -12,9 +12,9 @@ class OrganizationItem extends Component {
         <div>
         <div className="column">
          <div className="row cart-item">
-         <div className="row cart-item">
+         <div className="row cart-item pt-2 p-auto">
            <h3>{organization_name}</h3>
-             <h3>{organization_location} UAH</h3>
+             <h3>{organization_location}</h3>
              </div>
            </div>
            </div>

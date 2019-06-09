@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PageTitle from './PageTitle'
 import CartList from './CartList'
+import {Link} from 'react-router-dom'
 import {DishConsumer} from '../context'
 
 class Cart extends Component {
@@ -28,7 +29,9 @@ class Cart extends Component {
                                 </div>
                             <CartList aim="cart"/>
                             <div className="text-right"><h1>Итого:{total} UAH</h1>
+                            <Link to="/create-order">
                             <button className="btn-primary">Оформить заказ</button>
+                            </Link>
                         </div></div>
 
                 </div>

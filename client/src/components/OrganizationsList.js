@@ -7,7 +7,7 @@ class OrganizationsList extends Component{
     return(
       <DishConsumer>
       {value => {
-        return value.detailsDish.availability.map(organization => {
+        return value.detailsDishAv.map(organization => {
             return <OrganizationItem key={organization.organization_id} organization={organization}/>;
           })
       }}

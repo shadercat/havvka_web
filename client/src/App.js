@@ -13,7 +13,10 @@ import DishesTop from './components/DishesTop'
 import FavouriteDishes from './components/FavouriteDishes'
 import Menu from './components/Menu'
 import Details from './components/Details'
+import CreatingOrder from './components/CreatingOrder'
 import UserOrders from './components/UserOrders'
+import SecondStepPayment from './components/SecondStepPayment'
+import ConfirmOrder from './components/ConfirmOrder'
 import './App.css';
 
 
@@ -25,6 +28,9 @@ render(){
       <Header/>
 
       <Switch>
+      <Route exact path="/create-order" component={CreatingOrder}/>
+      <Route exact path="/create-order/2" component={SecondStepPayment}/>
+      <Route exact path="/create-order/3" component={ConfirmOrder}/>
       <Route exact path="/details" component={Details}/>
       <Route exact path="/" component={Landing}/>
       <Route exact path="/userorders" component={UserOrders}/>

@@ -15,6 +15,7 @@ class DishProvider extends Component {
     secondDishes: [],
     thirdDishes: [],
     forthDishes: [],
+    detailsDishAv: [],
     userId: 0
   };
 
@@ -28,66 +29,67 @@ class DishProvider extends Component {
       userId: id
     })}
     this.loadData(id);
+    this.loadGeneralData();
   }
 
 
-  loadData = (id) => {
-  getAllDishes().then(res => {
+  loadGeneralData = () => {
+    getAllDishes().then(res => {
+        if(res){
+        this.setState(
+          {
+            dishesInShop: res.data
+          }
+        )
+      }
+    })
+    getAllDishesByCategory(1,100).then(res => {
       if(res){
-      this.setState(
-        {
-          dishesInShop: res.data
+        console.log(res.data);
+        this.setState({
+          firstDishes: res.data
         }
-      )
-    }
-  })
-  getAllDishesByCategory(1,100).then(res => {
-    if(res){
-      console.log(res.data);
-      this.setState({
-        firstDishes: res.data
+        )
       }
-      )
-    }
-  })
-  getAllDishesByCategory(2,100).then(res => {
-    if(res){
-      this.setState({
-        secondDishes: res.data
-      })
-    }
-  })
-  getAllDishesByCategory(3,100).then(res => {
-    if(res){
-      this.setState({
-        thirdDishes: res.data
-      })
-    }
-  })
-  getAllDishesByCategory(4,100).then(res => {
-    if(res){
-      this.setState({
-        forthDishes: res.data
+    })
+    getAllDishesByCategory(2,100).then(res => {
+      if(res){
+        this.setState({
+          secondDishes: res.data
+        })
       }
-      )
-    }
-  })
+    })
+    getAllDishesByCategory(3,100).then(res => {
+      if(res){
+        this.setState({
+          thirdDishes: res.data
+        })
+      }
+    })
+    getAllDishesByCategory(4,100).then(res => {
+      if(res){
+        this.setState({
+          forthDishes: res.data
+        }
+        )
+      }
+    })
+}
+
+  loadData = (id) => {
   getDishByName('Суп').then(res => {
     if(res){
       var dish = res.data;
       getAvailabilityByDishId(dish.dish_id).then(res => {
         if(res){
           dish.availability = res.data;
+          this.setState({
+            detailsDishAv: res.data
+          });
         }
       })
-      this.setState({
-        detailsDish: dish
-      })
-      console.log(dish);
-      // this.setState({
-      //   detailsDish: res.data
-      // })
-    }
+        this.setState({ detailsDish: dish })
+      }
   })
 
 
@@ -134,6 +136,10 @@ isHere = (id, arr) => {
   return false;
 }
 
+findAvailable = (dish_id) => {
+
+}
+
 addToFavourites = (id) => {
   var dish = this.getItem(id);
   if(this.isHere(id, this.state.dishesInFav)){
@@ -157,6 +163,9 @@ addToFavourites = (id) => {
     getAvailabilityByDishId(dish.dish_id).then(res => {
       if(res){
         dish.availability = res.data;
+        this.setState({
+          detailsDishAv: res.data
+        })
       }
     })
     dish.availability = [];
@@ -206,6 +215,7 @@ addToFavourites = (id) => {
         addToCart: this.addToCart,
         addToFavourites: this.addToFavourites,
         isHere: this.isHere,
+        detailsDishAv: this.state.detailsDishAv,
         deleteFromFavourites: this.deleteFromFavourites,
         deleteFromCart: this.deleteFromCart,
       viewDishCategory: this.viewDishCategory}}>

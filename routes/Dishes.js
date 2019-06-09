@@ -15,6 +15,11 @@ router.get("/all-dishes", (req, res) => {
         })
 });
 
+// Get All Dishes with marks
+router.get("/all-dishes-with-marks", (req, res) => {
+  
+})
+
 router.post('/like:dish_id&:user_id', (req, res) => {
   const favouriteData = {
     dish_id: req.params.dish_id,
