@@ -15,13 +15,14 @@
     /*borders*/
     --no-border: 0px;
     /*fonts*/
-    --normal-font:'IBM Plex Sans', sans-serif;
+    --normal-font: Arial, Helvetica, sans-serif;
     --attention-font: "Arial Bold", Arial;
 }
 html, body{
   height: 100%;
   font-family: var(--normal-font);
 }
+
 
 .far .fa-heart{
   background-color: none;
@@ -205,6 +206,14 @@ p{
 .navbar .navbar-brand{
     color: var(--mainColor);
 }
+.navbar-brand:hover {
+ 
+  color: var(--mainColor); 
+}
+.navbar-light .navbar-brand:hover {
+
+  color: var(--mainColor); 
+}
 .navbar{
   justify-content: space-between;
 }
@@ -313,8 +322,8 @@ a.row.cart-item {
     align-content: center;
     align-items: center;
     justify-content: center;
-    height: 12vh;
-    font-size: 5vh;
+    height: 10vh;
+    font-size: 4vh;
     margin-bottom: 10vh;
     -webkit-box-shadow: 0px 5px 5px 0px var(--gray-color);
   -moz-box-shadow: 0px 5px 5px 0px var(--gray-color);
@@ -323,20 +332,23 @@ a.row.cart-item {
 
 .brand-text{
   margin-left: 4vw;
-  font-size: 5vh;
+}
+.brand-text:hover {
+  color: var(--main-color);
 }
 
 .nav-item, .nav-item:hover{
   display: flex;
   width: 7vw;
-  height: 10vh;
+  height: 6vh;
   align-content: center;
   align-items: center;
   justify-content: center;
 }
 
 .nav-link{
-  font-size: 2vh;
+  /* font-size: 2vh; */
+  font-weight: normal;
 }
 
 .headernav{
@@ -375,6 +387,19 @@ box-shadow: 0px 5px 5px 0px var(--gray-color);
   height: 120%;
 }
 
+.card-body {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  flex-wrap: wrap;
+}
+.inline {
+  display: inline-block;
+}
+.text-right {
+  text-align: right;
+  width: 70%;
+}
 footer{
   background-color: var(--mainColor);
   width: 100%;
@@ -384,3 +409,4 @@ footer{
   font-size: 2vh;
   padding: 4vh;
 }
+
