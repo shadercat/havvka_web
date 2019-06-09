@@ -3,6 +3,7 @@ import Header from './components/Header'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import Login from './components/Login'
+import UserSets from './components/UserSets'
 import Register from './components/Register'
 import Landing from './components/Landing'
 import Footer from './components/Footer'
@@ -30,6 +31,7 @@ render(){
       <Route exact path="/userorders" component={UserOrders}/>
       <Route exact path="/menu" component={Menu}/>
       <Route exact path="/login" component={Login}/>
+      <Route exact path="/usersets" component={UserSets}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/orgadm" component={OrganizationLogin}/>
       <Route exact path="/orgadm/register" component={OrganizationRegister}/>
