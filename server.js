@@ -13,7 +13,7 @@ var Dishes = require('./routes/Dishes')
 var Organizations = require('./routes/Organizations')
 
 app.use('/users', Users)
-app.use('/organizations', Organizations)
+app.use('/api/organizations', Organizations)
 app.get('/', (req, res) => ('./client/src/App.js'))
 app.use('/api/dishes', Dishes)
 

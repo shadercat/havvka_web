@@ -22,7 +22,7 @@ class SpecialOffer extends Component{
             <div className="container-details">
               <div className="row row1">
               <div className="column col0">
-                <img src={dish_img} height="300vh"/>
+                <img alt={dish_name} src={dish_img} height="300vh"/>
                 </div>
                   <div className="column col1" float="left">
                       <div className="row">

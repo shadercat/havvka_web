@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import {getAllDishes, likeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
+import {getAllDishes, getAvailabilityByDishId, likeDish, dislikeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
 
 const DishContext = React.createContext();
 
@@ -21,8 +21,6 @@ class DishProvider extends Component {
 
   componentDidMount = () => {
     if(localStorage.usertoken){
-      console.log(this.state);
-
     var token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     var id = decoded.user_id;
@@ -76,11 +74,23 @@ class DishProvider extends Component {
   })
   getDishByName('Суп').then(res => {
     if(res){
-      this.setState({
-        detailsDish: res.data
+      var dish = res.data;
+      getAvailabilityByDishId(dish.dish_id).then(res => {
+        if(res){
+          dish.availability = res.data;
+        }
       })
+      this.setState({
+        detailsDish: dish
+      })
+      console.log(dish);
+      // this.setState({
+      //   detailsDish: res.data
+      // })
     }
   })
+
+
     if(localStorage.usertoken){
         getFavouriteDishes(id).then(res => {
           if(res){
@@ -111,6 +121,7 @@ deleteFromCart = (id) => {
 
 deleteFromFavourites = (id) => {
   var index = this.state.dishesInFav.indexOf(this.getItem(id));
+  dislikeDish(id, this.state.userId);
   this.state.dishesInFav.splice(index,1);
 }
 
@@ -127,7 +138,8 @@ addToFavourites = (id) => {
   var dish = this.getItem(id);
   if(this.isHere(id, this.state.dishesInFav)){
     this.deleteFromFavourites(id);
-      dish.dish_liked = false;
+    dislikeDish(id, this.state.userId);
+    dish.dish_liked = false;
   }else{
     dish.dish_liked = true;
     this.state.dishesInFav.push(dish);
@@ -142,6 +154,12 @@ addToFavourites = (id) => {
 
   handleDetail = (id) => {
     const dish = this.getItem(id);
+    getAvailabilityByDishId(dish.dish_id).then(res => {
+      if(res){
+        dish.availability = res.data;
+      }
+    })
+    dish.availability = [];
     this.setState(() => {
       return {detailsDish: dish}
     })

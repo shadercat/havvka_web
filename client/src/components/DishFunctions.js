@@ -7,6 +7,22 @@ export const getAllDishes = () => {
   return res});
 }
 
+export const dislikeDish = (id, user_id) => {
+  return axios
+  .delete('./api/dishes/dislike' + id + '&' + user_id)
+  .then(res => {
+    return res
+  });
+}
+
+export const getAvailabilityByDishId = (dish_id) => {
+  return axios
+  .get('./api/organizations/dish-av-org' + dish_id)
+  .then(res => {
+    return res
+  });
+}
+
 export const getAllDishesByCategory = (type, limit) => {
   return axios
   .get('./api/dishes/category-menu?dish_type=' + type + "&limit=" + limit)
