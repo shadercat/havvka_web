@@ -20,6 +20,26 @@ router.get("/byuserid/:user_id",(req, res) => {
   })
 })
 
+router.get("/get-set-items-by-set", (req, res) => {
+  if(req.query.set_id != -1){
+    db.sequelize.query('SELECT * FROM `set_items` LEFT JOIN `dishes_top` ON `set_items`.dish_id = `dishes_top`.dish_id WHERE `set_items`.set_id=' + req.query.set_id +';')
+    .then(result => {
+      res.json(result[0]);
+    })
+    .catch(err => {
+      res.json({status: false})
+    })
+  } else {
+    db.sequelize.query('Select `dishes`.*, 1 as set_item_amount FROM (`users` LEFT JOIN `favourites` ON `users`.user_id = `favourites`.user_id) LEFT JOIN `dishes` ON `dishes`.dish_id = `favourites`.dish_id WHERE `users`.user_email=\''+req.query.user_email+'\';')
+    .then(result => {
+      res.json(result[0]);
+    })
+    .catch(err => {
+      res.json({status: false})
+    })
+  }
+})
+
 router.delete("/sets-delete-elem", (req, res) => {
   if(req.query.set_id == -1){
     var userId;
