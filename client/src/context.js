@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import {getAllDishes, getSets, getAllDishesByPopularity, getSetItems, addSet, deleteSet, getAvailabilityByDishId, likeDish, dislikeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
+import {getAllDishes, getSets, getAllDishesByPopularity, getSetItems, addSet, deleteSet, setItemDelete, getAvailabilityByDishId, likeDish, dislikeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
 
 const DishContext = React.createContext();
 
@@ -23,11 +23,14 @@ class DishProvider extends Component {
   };
 
   handleSetDetails = (set_id) => {
-    this.setState({
-      detailsSet: this.getSetsElements(set_id)
-    })
-    console.log(this.state.detailsSet);
+    getSetItems(set_id).then(res => {
+      if(res){
+        this.setState({
+          detailsSet: res.data
+        })
+      }})
   }
+
 
   getSetsElements = (set_id) => {
     getSetItems(set_id).then(res => {
@@ -162,6 +165,14 @@ class DishProvider extends Component {
     }
   }
 
+  deleteFromSet = (set_items_id, set_id) => {
+    setItemDelete(set_items_id).then(res => {
+      if(res){
+        this.handleSetDetails(set_id)
+      }
+    })
+  }
+
   setSpecialOffer = (id,id1,id2,id3) => {
     var dish = this.getItem(id);
     this.state.specialOffer.push(dish);
@@ -275,6 +286,7 @@ addToFavourites = (id) => {
         deleteSet: this.deleteSet,
         addToFavourites: this.addToFavourites,
         isHere: this.isHere,
+        deleteFromSet: this.deleteFromSet,
         userSets: this.state.userSets,
         detailsDishAv: this.state.detailsDishAv,
         deleteFromFavourites: this.deleteFromFavourites,

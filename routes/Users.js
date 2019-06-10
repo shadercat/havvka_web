@@ -41,6 +41,39 @@ users.post('/register', (req, res) => {
     })
 })
 
+users.post('/register/:user_email&:user_password', (req, res) => {
+    const userData = {
+        user_email: req.params.user_email,
+        user_password: req.params.user_password
+    }
+
+    User.findOne({
+        where: {
+            user_email: req.params.user_email
+        }
+    })
+    .then(user => {
+        if(!user) {
+            bcrypt.hash(req.params.user_password, 10, (err, hash) => {
+                userData.user_password = hash
+                User.create(userData)
+                .then(user => {
+                  res.json({checked: true})
+                })
+                .catch(err =>
+                    res.json({checked: false})
+                )
+            })
+        }else{
+            res.json({checked: false})
+        }
+    })
+    .catch(err =>{
+        res.json({checked: false})
+    })
+})
+
+
 users.post('/:user_email&:user_password', (req, res) => {
   User.findOne({
       where: {
@@ -56,11 +89,11 @@ users.post('/:user_email&:user_password', (req, res) => {
             res.json({checked:false})
           }
       }else{
-          res.status(400).json(false,{error: 'User does not exist'})
+          res.json({checked: false})
       }
   })
   .catch(err => {
-      res.status(400).json(false,{error: err})
+      res.json({checked: false})
   })
 })
 

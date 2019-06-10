@@ -5,7 +5,7 @@ const SetItem = require("../models/SetItem")
 
 var db = require('../database/db')
 
-router.get("/:user_id",(req, res) => {
+router.get("/byuserid/:user_id",(req, res) => {
   Set.findAll({
     where: {
       user_id: req.params.user_id
@@ -13,6 +13,45 @@ router.get("/:user_id",(req, res) => {
   })
   .then(orders => {
     res.json(orders)
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
+router.get("/sets-get", (req, res) => {
+  db.sequelize.query('SELECT * FROM `usersets` WHERE user_email=\'' + req.query.user_email + '\';')
+  .then(results => {
+    if(likesIsHere(results[0])){
+    res.json(results[0])
+  }else{
+    var arr = results[0]
+    arr.unshift({user_email: req.query.email, set_id: -1, set_name: "Улюблене", set_total_price: 0})
+    res.json(arr);
+  }
+  })
+  .catch(err => {
+    res.json({state: err});
+  })
+})
+
+const likesIsHere = (arr) => {
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i].set_id == -1){
+      return true;
+    }
+  }
+  return false;
+}
+
+router.delete("/set_item_delete", (req, res) => {
+  SetItem.destroy({
+    where: {
+      set_items_id: req.query.set_items_id
+    }
+  })
+  .then(result => {
+    res.json({status: "deleted"})
   })
   .catch(err => {
     res.send("error: " + err)

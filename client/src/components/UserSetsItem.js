@@ -5,10 +5,10 @@ import {Link} from 'react-router-dom'
 
 class UserSetsItem extends Component {
     render(){
-      const {dish_id,dish_name,dish_img,dish_price,dish_popularity} = this.props.dish;
+      const {dish_id,dish_name,dish_img,dish_price,dish_popularity,set_item_amount, set_items_id, set_id} = this.props.el;
 
         return (
-          
+
           <DishConsumer>
           {value => (
             <div className="dish-el-menu">
@@ -18,7 +18,7 @@ class UserSetsItem extends Component {
             <div className="dish-el-menu-description">
             <div className="dish-states">
               <h3 className="dish-title">{dish_name}</h3>
-              <Link onClick={() => value.deleteFromFavourites(dish_id)}>
+              <Link onClick={() => value.deleteFromSet(set_items_id, set_id)}>
               <img src="./images/delete.png" height="32px"/>
               </Link>
               </div>
@@ -29,18 +29,18 @@ class UserSetsItem extends Component {
                   {dish_popularity}
                 </div>
                 <div className="dish-rate"><RateDiv rate="3"/></div>
+                {set_item_amount}
               </div>
             </div>
             </div>
           )
           }
-          
-          
-        </DishConsumer>          
+
+
+        </DishConsumer>
         )
     }
-    
+
 }
 
 export default UserSetsItem;
-

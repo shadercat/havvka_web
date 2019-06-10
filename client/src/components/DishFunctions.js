@@ -15,6 +15,14 @@ export const deleteSet = (set_id) => {
   });
 }
 
+export const setItemDelete = (set_items_id) => {
+  return axios
+  .get('./api/sets/set_item_delete?set_items_id=' + set_items_id)
+  .then(res => {
+    return res
+  });
+}
+
 export const getAllDishesByPopularity = () => {
   return axios
   .get('./api/dishes/pall-dishes-by-popularity')
@@ -38,7 +46,7 @@ export const getSetItems = (set_id) => {
 
 export const getSets = (user_id) => {
   return axios
-  .get('./api/sets/'+user_id)
+  .get('./api/sets/byuserid/'+user_id)
   .then(res => {
     return res
   });

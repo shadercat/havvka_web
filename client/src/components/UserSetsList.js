@@ -11,8 +11,8 @@ class UserSetsList extends Component {
         <DishConsumer>
            {value => {
              if(value.detailsSet.length > 0){
-             return value.detailsSet.map(dish => {
-            return <UserSetsItem key={dish.dish_id} dish={dish}/>;
+             return value.detailsSet.map(el => {
+            return <UserSetsItem key={el.set_items_id} el={el}/>;
           })} else {
             return (<div className="container">
                 <div className="jumbotron mt-5">
