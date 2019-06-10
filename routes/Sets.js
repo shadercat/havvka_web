@@ -40,6 +40,20 @@ router.get("/get-set-items-by-set", (req, res) => {
   }
 })
 
+router.post("/update-set-items-quentity", (req, res) => {
+  if(req.query.set_id != -1){
+    db.sequelize.query('UPDATE `set_items` SET set_item_amount=' + req.query.amount + ' WHERE set_items_id=' + req.query.itemId)
+    .then(result => {
+      res.json({status: true})
+    })
+    .catch(err => {
+      res.json({status: false})
+    })
+  } else {
+    res.json({status: false})
+  }
+})
+
 router.delete("/sets-delete-elem", (req, res) => {
   if(req.query.set_id == -1){
     var userId;
@@ -178,11 +192,28 @@ router.post("/create", (req, res) => {
 
   Set.create(setData)
   .then(set => {
-      res.json({status: 'created'})
+      res.json({status: true})
   })
   .catch(err =>
-      res.send("error: " + err)
+      res.json({status: false})
   )
+})
+
+router.post("/add-set-by-login", (req, res) => {
+  db.sequelize.query('SELECT user_id FROM `users` WHERE user_email=\'' + req.query.user_email + '\';')
+  .then(result => {
+    var userId = result[0][0].user_id;
+    Set.create({set_name: req.query.set_name, user_id: userId})
+    .then(set => {
+      res.json({status: true})
+    })
+    .catch(err =>{
+      res.json({status: false})
+    })
+})
+.catch(err => {
+  res.json({status: false})
+})
 })
 
 module.exports = router;
