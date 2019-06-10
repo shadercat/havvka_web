@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Favourite = require("../models/Favourite")
 const Dish = require("../models/Dish")
+const Mark = require("../models/Mark")
 var db = require('../database/db')
 
 // Get All Dishes
@@ -122,6 +123,23 @@ router.get("/category-menu", (req, res) => {
   .catch(err => {
     res.send("error: " + err)
   })
+})
+
+router.post("/estimate-dish", (req, res) => {
+  db.sequelize.query('SELECT user_id FROM `users` WHERE user_email=\'' + req.query.user_email + '\';')
+  .then(result => {
+    var userId = result[0][0].user_id;
+    Mark.create({mark_value: req.query.mark_value, user_id: userId, dish_id: req.query.dish_id})
+    .then(sett => {
+      res.json({status: true})
+    })
+    .catch(err =>{
+      res.json({status: false})
+    })
+})
+.catch(err => {
+  res.json({status: false})
+})
 })
 
 

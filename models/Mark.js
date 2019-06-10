@@ -11,9 +11,9 @@ module.exports = db.sequelize.define(
             autoIncrement: true
         },
         mark_date: {
-            type: Sequelize.DATE_TIME,//?
+            type: Sequelize.DATE,//?
             allowNull: false,
-            defaultValue:
+            defaultValue: null
         },
         mark_value: {
             type: Sequelize.DOUBLE,

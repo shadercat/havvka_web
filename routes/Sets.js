@@ -191,7 +191,7 @@ router.post("/create", (req, res) => {
   }
 
   Set.create(setData)
-  .then(set => {
+  .then(sett => {
       res.json({status: true})
   })
   .catch(err =>
@@ -204,7 +204,7 @@ router.post("/add-set-by-login", (req, res) => {
   .then(result => {
     var userId = result[0][0].user_id;
     Set.create({set_name: req.query.set_name, user_id: userId})
-    .then(set => {
+    .then(sett => {
       res.json({status: true})
     })
     .catch(err =>{

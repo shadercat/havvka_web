@@ -5,6 +5,7 @@ import PageTitle from './PageTitle'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import RateDiv from './RateDiv'
+import UserSets from './UserSets'
 import DishAvailability from './DishAvailability'
 
 
@@ -13,8 +14,12 @@ class Details extends Component{
     super();
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
+
+        this.handleShow1 = this.handleShow1.bind(this);
+        this.handleClose1 = this.handleClose1.bind(this);
       this.state = {
         show: false,
+        show1: false,
         liked: false
       };
     }
@@ -24,6 +29,15 @@ class Details extends Component{
         liked: false
       })
     }
+
+
+        handleClose1() {
+          this.setState({ show1: false });
+        }
+
+        handleShow1() {
+          this.setState({ show1: true });
+        }
 
     handleClose() {
       this.setState({ show: false });
@@ -63,7 +77,7 @@ class Details extends Component{
                     <div className="row">
                       <h1>{dish_name}</h1>
                       <div className="like-set">
-                        <img src="./images/add.png" width="16px"/>
+                        <img onClick={this.handleShow1} src="./images/add.png" width="16px"/>
                         <a id="liked" className={dish_liked?'fas fa-heart':'far fa-heart'} onClick={() => {value.addToFavourites(dish_id)}} />
                       </div>
                     </div>
@@ -88,16 +102,27 @@ class Details extends Component{
                             </Modal.Header>
                             <Modal.Body>Блюдо добавлено в корзину</Modal.Body>
                             <Modal.Footer>
-                            <Button variant="secondary" onClick={this.handleClose}>
+                            <Button variant="success" onClick={this.handleClose}>
                             Продолжить покупки
                             </Button>
                             <Link to="/cart">
-                              <Button variant="primary">
+                              <Button variant="danger">
                                 Корзина
                               </Button>
                               </Link>
                             </Modal.Footer>
                           </Modal>
+                          <Modal show={this.state.show1} onHide={this.handleClose1}>
+                                <Modal.Header closeButton onClick={this.handleClose1}>
+                                Выберите сет
+                                </Modal.Header>
+                                <Modal.Body><UserSets/></Modal.Body>
+                                <Modal.Footer>
+                                <Button variant="success" onClick={this.handleClose1}>
+                                Закрыть
+                                </Button>
+                                </Modal.Footer>
+                              </Modal>
 
 
                     </div>
