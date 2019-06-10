@@ -24,7 +24,7 @@ class DishProvider extends Component {
 
   handleSetDetails = (set_id) => {
     this.setState({
-      detailsSet: this.getSetsElements
+      detailsSet: this.getSetsElements(set_id)
     })
     console.log(this.state.detailsSet);
   }
