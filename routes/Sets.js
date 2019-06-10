@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Set = require("../models/Set")
 const SetItem = require("../models/SetItem")
+const Favourite = require("../models/Favourite")
 
 var db = require('../database/db')
 
@@ -18,6 +19,58 @@ router.get("/byuserid/:user_id",(req, res) => {
     res.send("error: " + err)
   })
 })
+
+router.delete("/sets-delete-elem", (req, res) => {
+  if(req.query.set_id == -1){
+    var userId;
+    db.sequelize.query('SELECT user_id FROM `users` WHERE user_email=\'' + req.query.user_email + '\';')
+    .then(result => {
+      userId = result[0][0].user_id;
+      Favourite.destroy({
+        where:{
+        dish_id: req.query.dish_id, user_id: userId}
+      })
+      res.json({status: true})
+    })
+    .catch(err => {
+      res.json({status: false})
+    })
+}else{
+  SetItem.destroy({
+    where:
+    {dish_id: req.query.dish_id, set_id: req.query.set_id}
+  }
+  )
+  .then(result => {
+    res.json({status: true})
+  })
+  .catch(err => {
+    res.json({status: false})
+  })
+}
+})
+
+router.post("/sets-add-elem", (req, res) => {
+  if(req.query.set_id == -1){
+    var userId;
+    db.sequelize.query('SELECT user_id FROM `users` WHERE user_email=\'' + req.query.user_email + '\';')
+    .then(result => {
+      userId = result[0][0].user_id;
+      Favourite.create({dish_id: req.query.dish_id, user_id: userId})
+      res.json({status: true})
+    })
+    .catch(err => {
+      res.json({status: false})
+    })
+}else{
+  SetItem.create({dish_id: req.query.dish_id, set_item_amount: req.query.set_item_amount, set_id: req.query.set_id})
+  .then(result => {
+    res.json({status: true})
+  })
+  .catch(err => {
+    res.json({status: false})
+  })
+}})
 
 router.get("/sets-get", (req, res) => {
   db.sequelize.query('SELECT * FROM `usersets` WHERE user_email=\'' + req.query.user_email + '\';')
