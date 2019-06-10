@@ -10,13 +10,9 @@ class UserSetsList extends Component {
         return (
         <DishConsumer>
            {value => {
-             return (
-               () =>
-             value.getSetsElements(this.props.setId)
-             .map(dish => {
+             return value.detailsSet.map(dish => {
             return <UserSetsItem key={dish.dish_id} dish={dish}/>;
-          }))
-      }}
+          })}}
         </DishConsumer>
         )
     }

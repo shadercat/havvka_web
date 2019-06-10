@@ -51,9 +51,9 @@ users.get('/:user_email&:user_password', (req, res) => {
     console.log(user);
       if(user){
           if(bcrypt.compareSync(req.params.user_password, user.user_password)){
-              res.json(true)
+              res.json({checked: true})
           } else {
-            res.json(false)
+            res.json({checked:false})
           }
       }else{
           res.status(400).json(false,{error: 'User does not exist'})

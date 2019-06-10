@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import {getAllDishes, getSets, getAllDishesByPopularity, getSetItems, addSet, getAvailabilityByDishId, likeDish, dislikeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
+import {getAllDishes, getSets, getAllDishesByPopularity, getSetItems, addSet, deleteSet, getAvailabilityByDishId, likeDish, dislikeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
 
 const DishContext = React.createContext();
 
@@ -235,6 +235,10 @@ addToFavourites = (id) => {
     return false;
   }
 
+  deleteSet = (set_id) => {
+
+  }
+
   viewDishCategory = (categoryId, limit) => {
     getAllDishesByCategory(categoryId, limit).then(res =>{
       if(res){
@@ -263,10 +267,12 @@ addToFavourites = (id) => {
         handleSetDetails:this.handleSetDetails,
         thirdDishes: this.state.thirdDishes,
         forthDishes: this.state.forthDishes,
+        detailsSet: this.state.detailsSet,
         handleDetail: this.handleDetail,
         dishesByPopularity: this.state.dishesByPopularity,
         getSetsElements: this.getSetsElements,
         addToCart: this.addToCart,
+        deleteSet: this.deleteSet,
         addToFavourites: this.addToFavourites,
         isHere: this.isHere,
         userSets: this.state.userSets,

@@ -7,6 +7,14 @@ export const getAllDishes = () => {
   return res});
 }
 
+export const deleteSet = (set_id) => {
+  axios
+  .get('./api/sets/set_delete?set_id=' + set_id)
+  .then(res => {
+    return res
+  });
+}
+
 export const getAllDishesByPopularity = () => {
   return axios
   .get('./api/dishes/pall-dishes-by-popularity')

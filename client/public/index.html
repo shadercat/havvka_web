@@ -19,6 +19,14 @@
 $(".form_datetime").datetimepicker({
 format: "dd MM yyyy - hh:ii"
 });
-</script>       
+document.getElementById("liked").addEventListener("click", function(){
+if(document.getElementById("liked").classList.contains('far')){
+  document.getElementById("liked").classList.remove('far');
+  document.getElementById("liked").classList.add('fas');
+}else{
+  document.getElementById("liked").classList.remove('fas');
+  document.getElementById("liked").classList.add('far');
+}})
+</script>
   </body>
 </html>

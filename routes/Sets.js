@@ -19,6 +19,20 @@ router.get("/:user_id",(req, res) => {
   })
 })
 
+router.delete("/set_delete", (req, res) => {
+  Set.destroy({
+    where:{
+      set_id: req.query.set_id
+    }
+  })
+  .then(result => {
+    res.json({status: "deleted"})
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
 router.get("/", (req, res) => {
   SetItem.findAll({
     where: {

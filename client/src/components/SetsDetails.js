@@ -1,18 +1,20 @@
 import React, {Component} from 'react'
-import {DishConsumer} from '../context'
+import DishConsumer from '../context'
+import PageTitle from './PageTitle'
+import UserSetsList from './UserSetsList'
 
 class SetsDetails extends Component{
   render(){
     return(
-      <DishConsumer>
-      {value => {
-        return () => value.detailsSet.map(settItem =>{
-
-        })
-
-    }
-    }
-    </DishConsumer>
+      <div>
+      <PageTitle title="Информация о сете"/>
+      <div className="container">
+      <div className="text-right">
+      <button className="btn btn-danger">Удалить сет</button>
+      <UserSetsList/>
+      </div>
+      </div>
+      </div>
     )
   }
 }
