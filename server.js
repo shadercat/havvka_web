@@ -10,12 +10,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 var Users = require('./routes/Users')
 var Dishes = require('./routes/Dishes')
+var Sets = require('./routes/Sets')
 var Organizations = require('./routes/Organizations')
+// var Orders = require('./routes/Orders')
 
 app.use('/users', Users)
+// app.use('/orders', Orders)
 app.use('/api/organizations', Organizations)
-app.get('/', (req, res) => ('./client/src/App.js'))
 app.use('/api/dishes', Dishes)
+app.use('/api/sets', Sets)
+app.get('/', (req, res) => ('./client/src/App.js'))
 
 app.listen(port, () => {
     console.log("Server is running on port: " + port)

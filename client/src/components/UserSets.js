@@ -1,54 +1,26 @@
 import React, {Component} from 'react'
-import PageTitle from './PageTitle'
-import UserSetsList from './UserSetsList'
 import {DishConsumer} from '../context'
 import UserSetsAccordion from './UserSetsAccordion';
+import {Link} from 'react-router-dom'
 
 class UserSets extends Component {
     render(){
         return (
-          <div>
           <DishConsumer>
-          {value => {if(value.dishesInCart.length > 0){
-            
-            return (<div>
-            <PageTitle pageName="Сеты"/>
-            <div className="container">
-                <div className="jumbotron mt-5">
-                        <div className="text-center">
-
-                          <div className="column">
-                              
-                            </div>
-
+          {value => {
+            if(value.userSets.length>0){
+            return value.userSets.map(sett => {
+                return <Link to="/setsdetails" onClick={() => value.handleSetDetails(sett.set_id)}><UserSetsAccordion key={sett.set_id} set={sett}/></Link>;
+              })}else{
+                return(
+                <div>
+                Sorry, but your sets list is empty
                 </div>
-            </div>
-            </div>
-            </div>)
-          }else{
-          return  (
-            <div>
-            <PageTitle pageName="Сеты"/>
-            <div className="container">
-                <div className="jumbotron mt-5">
-                        <div className="text-center">
-                          Sorry, but your sets list is empty
-
-                          {/* Аккордион */}
-                       <UserSetsAccordion />
-                          </div>
-                          </div>
-                    </div>
-            </div>
-          )
-          }}
-          }
+              )
+              }}}
             </DishConsumer>
-                        </div>
-                   
         )
     }
 }
 
 export default UserSets;
-

@@ -11,18 +11,7 @@ class DishesTop extends Component {
           <div className="column menupage">
           <div className="container">
             <div className="container">
-            <h1>По выставленным оценкам за</h1>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label className="btn btn-secondary">
-    <input type="radio" name="options" id="option1" autocomplete="off"/> Неделю
-  </label>
-  <label className="btn btn-secondary">
-    <input type="radio" name="options" id="option2" autocomplete="off"/> Месяц
-  </label>
-  <label className="btn btn-secondary active">
-    <input type="radio" name="options" id="option3" autocomplete="off"  checked />Все время
-  </label>
-</div>
+            <h1>По выставленным оценкам </h1>
               <div className="row menurow" justify-content="space-around">
                 <DishList aim="menu" limit="2"/>
                 </div>
@@ -30,7 +19,7 @@ class DishesTop extends Component {
                   <div className="container">
                   <h1>По популярности</h1>
                     <div className="row menurow" justify-content="space-around">
-                      <DishList aim="menu" limit="100"/>
+                      <DishList aim="menu" orderTop="popularity" limit="100"/>
                       </div>
             </div>
             </div>

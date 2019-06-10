@@ -3,6 +3,22 @@ import {Link} from 'react-router-dom'
 
 
 class SecondStepPayment extends Component{
+  constructor(){
+    super()
+    this.state = {
+      paymentType: 1
+    }
+
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange(e){
+    this.setState({
+      paymentType: e.target.value
+    })
+    console.log(this.state.paymentType);
+  }
+
   render(){
     return(
       <div className="container">
@@ -20,17 +36,17 @@ class SecondStepPayment extends Component{
                     <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">К оплате</label>
                     </div>
-                    <input type="text" disabled/>
+                    <input type="text" disabled value={this.props.total}/>
                     </div>
                     </div>
                     <label className="mt-3" htmlFor="email">Выберите способ оплаты</label>
                     <div className="form-group text-left">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label className="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off"/>Наличными
+                        <input type="radio" name="options" id="option1" autocomplete="off" value="Наличными" onChange={this.onChange}/>Наличными
                         </label>
                         <label className="btn btn-secondary active">
-                        <input type="radio" name="options" id="option3" autocomplete="off"  checked />Онлайн-оплата
+                        <input type="radio" name="options" id="option2" autocomplete="off"  value="Онлайн" onChange={this.onChange} checked />Онлайн-оплата
                         </label>
                       </div>
                     </div>

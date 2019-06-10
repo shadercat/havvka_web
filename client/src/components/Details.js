@@ -39,15 +39,14 @@ class Details extends Component{
       {value => {
         var {
           dish_id,
-          availability,
           dish_name,
           dish_img,
           dish_price,
           dish_long_description,
           dish_popularity,
-          dish_liked
+          dish_liked,
+          dish_rating
         } = value.detailsDish;
-        console.log(availability);
         if(dish_liked == null) {
           dish_liked = false;
         }
@@ -74,7 +73,7 @@ class Details extends Component{
                         <img src="./images/popularity.png" width="30px"/>
                         {dish_popularity}
                       </div>
-                      <RateDiv/>
+                      <RateDiv rate={dish_rating}/>
                     </div>
                     <h2 className="text-right">{dish_price} UAH</h2>
                     <div>

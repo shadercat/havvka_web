@@ -7,6 +7,40 @@ export const getAllDishes = () => {
   return res});
 }
 
+export const getAllDishesByPopularity = () => {
+  return axios
+  .get('./api/dishes/pall-dishes-by-popularity')
+  .then(res =>{
+    return res
+  });
+}
+
+export const getPreOrderInfo = () => {
+  return axios
+  .get('./create-order')
+}
+
+export const getSetItems = (set_id) => {
+  return axios
+  .get('./api/sets/setel/'+set_id)
+  .then(res => {
+    return res
+  });
+}
+
+export const getSets = (user_id) => {
+  return axios
+  .get('./api/sets/'+user_id)
+  .then(res => {
+    return res
+  });
+}
+
+export const addSet = (user_id, set_name) => {
+  return axios
+  .post('./api/sets/create?name='+set_name+'&user_id='+user_id)
+}
+
 export const dislikeDish = (id, user_id) => {
   return axios
   .delete('./api/dishes/dislike' + id + '&' + user_id)

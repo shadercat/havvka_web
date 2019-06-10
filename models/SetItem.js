@@ -4,7 +4,7 @@ const db = require("../database/db")
 module.exports = db.sequelize.define(
     'set_item',
     {
-        set_item_id:{
+        set_items_id:{
             type: Sequelize.INTEGER,
             primaryKey: true,
             allowNull: false,
@@ -17,10 +17,6 @@ module.exports = db.sequelize.define(
         dish_id: {
             type: Sequelize.INTEGER,
             allowNull: false
-        },
-        set_item_price: {
-          type: Sequelize.DOUBLE,
-          defaultValue: 0.0
         },
         set_id:{
           type: Sequelize.INTEGER,

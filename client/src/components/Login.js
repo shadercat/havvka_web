@@ -35,7 +35,7 @@ class Login extends Component {
       if(res){
           this.props.history.push(`/`);
       } else {
-        alert("введенные данные неверны");
+        console.log("введенные данные неверны");
       }
     })
   }

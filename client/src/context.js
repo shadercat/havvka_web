@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import {getAllDishes, getAvailabilityByDishId, likeDish, dislikeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
+import {getAllDishes, getSets, getAllDishesByPopularity, getSetItems, addSet, getAvailabilityByDishId, likeDish, dislikeDish, getFavouriteDishes, getAllDishesByCategory, getDishByName} from './components/DishFunctions'
 
 const DishContext = React.createContext();
 
@@ -16,9 +16,27 @@ class DishProvider extends Component {
     thirdDishes: [],
     forthDishes: [],
     detailsDishAv: [],
+    dishesByPopularity: [],
+    detailsSet: [],
+    userSets: [],
     userId: 0
   };
 
+  handleSetDetails = (set_id) => {
+    this.setState({
+      detailsSet: this.getSetsElements
+    })
+    console.log(this.state.detailsSet);
+  }
+
+  getSetsElements = (set_id) => {
+    getSetItems(set_id).then(res => {
+      if(res){
+        return res.data;
+      }
+      return [];
+    })
+  }
 
   componentDidMount = () => {
     if(localStorage.usertoken){
@@ -32,6 +50,16 @@ class DishProvider extends Component {
     this.loadGeneralData();
   }
 
+  createSet = (set_name) => {
+    addSet(this.state.userId, set_name);
+    getSets(this.state.userId).then(res => {
+      if(res){
+        this.setState({
+          userSets: res.data
+        })
+      }
+    })
+  }
 
   loadGeneralData = () => {
     getAllDishes().then(res => {
@@ -41,6 +69,13 @@ class DishProvider extends Component {
             dishesInShop: res.data
           }
         )
+      }
+    })
+    getAllDishesByPopularity().then(res => {
+      if(res){
+        this.setState({
+          dishesByPopularity: res.data
+        })
       }
     })
     getAllDishesByCategory(1,100).then(res => {
@@ -77,6 +112,13 @@ class DishProvider extends Component {
 }
 
   loadData = (id) => {
+  getSets(id).then(res => {
+    if(res){
+      this.setState({
+        userSets: res.data
+      })
+    }
+  })
   getDishByName('Суп').then(res => {
     if(res){
       var dish = res.data;
@@ -108,6 +150,15 @@ class DishProvider extends Component {
             )
           }
         })
+        getSets(id).then(res => {
+          if(res){
+            this.setState(
+              {
+                userSets: res.data
+              }
+            )
+          }
+        })
     }
   }
 
@@ -122,8 +173,8 @@ deleteFromCart = (id) => {
 }
 
 deleteFromFavourites = (id) => {
-  var index = this.state.dishesInFav.indexOf(this.getItem(id));
   dislikeDish(id, this.state.userId);
+  var index = this.state.dishesInFav.indexOf(this.getItem(id));
   this.state.dishesInFav.splice(index,1);
 }
 
@@ -209,15 +260,20 @@ addToFavourites = (id) => {
         dishesInCart: this.state.dishesInCart,
         firstDishes: this.state.firstDishes,
         secondDishes: this.state.secondDishes,
+        handleSetDetails:this.handleSetDetails,
         thirdDishes: this.state.thirdDishes,
         forthDishes: this.state.forthDishes,
         handleDetail: this.handleDetail,
+        dishesByPopularity: this.state.dishesByPopularity,
+        getSetsElements: this.getSetsElements,
         addToCart: this.addToCart,
         addToFavourites: this.addToFavourites,
         isHere: this.isHere,
+        userSets: this.state.userSets,
         detailsDishAv: this.state.detailsDishAv,
         deleteFromFavourites: this.deleteFromFavourites,
         deleteFromCart: this.deleteFromCart,
+        createSet: this.createSet,
       viewDishCategory: this.viewDishCategory}}>
       {this.props.children}
       </DishContext.Provider>

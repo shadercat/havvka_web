@@ -6,7 +6,7 @@ import RateDiv from './RateDiv'
 
 class Dish extends Component {
   render(){
-    const {dish_id,dish_name,dish_img,dish_price,dish_short_description,dish_popularity} = this.props.dish;
+    const {dish_id,dish_name,dish_img,dish_price,dish_short_description,dish_popularity,dish_rating} = this.props.dish;
     var view = (
     <div className="dish-el-menu">
         <img width="150vw" height="150vw" src={dish_img}/>
@@ -18,7 +18,7 @@ class Dish extends Component {
             <img className="menu-popularity-img" src="./images/popularity.png"/>
               {dish_popularity}
             </div>
-            <div className="dish-rate"><RateDiv rate="3"/></div>
+            <div className="dish-rate"><RateDiv rate={dish_rating}/></div>
           </div>
         </div>
         </div>);

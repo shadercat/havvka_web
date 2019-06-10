@@ -15,9 +15,10 @@ import FavouriteDishes from './components/FavouriteDishes'
 import Menu from './components/Menu'
 import Details from './components/Details'
 import CreatingOrder from './components/CreatingOrder'
-import UserOrders from './components/UserOrders'
+import SetsPage from './components/SetsPage'
 import SecondStepPayment from './components/SecondStepPayment'
 import ConfirmOrder from './components/ConfirmOrder'
+import SetsDetails from './components/SetsDetails'
 import './App.css';
 
 
@@ -27,17 +28,17 @@ render(){
     <Router>
       <div className="App">
       <Header/>
-
       <Switch>
+      <Route exact path="/setsdetails" component={SetsDetails}/>
       <Route exact path="/create-order" component={CreatingOrder}/>
       <Route exact path="/create-order/2" component={SecondStepPayment}/>
       <Route exact path="/create-order/3" component={ConfirmOrder}/>
       <Route exact path="/details" component={Details}/>
       <Route exact path="/" component={Landing}/>
-      <Route exact path="/userorders" component={UserOrders}/>
+      <Route exact path="/userorders" component={SetsPage}/>
       <Route exact path="/menu" component={Menu}/>
       <Route exact path="/login" component={Login}/>
-      <Route exact path="/usersets" component={UserSets}/>
+      <Route exact path="/usersets" component={SetsPage}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/orgadm" component={OrganizationLogin}/>
       <Route exact path="/orgadm/register" component={OrganizationRegister}/>

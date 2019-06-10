@@ -14,10 +14,11 @@ router.get("/orders", (req, res) => {
 });
 
 router.get("/orders/:organization_id", (req, res) => {
-  Order.findAll(
+  Order.findAll({
     where: {
       organization_id: req.params.organization_id
     }
+  }
   )
   .then(orders => {
     res.json(orders)
@@ -29,10 +30,10 @@ router.get("/orders/:organization_id", (req, res) => {
 
 // Get all orders for user
 router.get("/orders/:user_id", (req, res) => {
-  Order.findAll(
+  Order.findAll({
     where: {
       user_id: req.params.user_id
-    }
+    }}
   )
   .then(orders => {
     res.json(orders)
@@ -73,23 +74,24 @@ router.post("/orders", (req, res) => {
       res.send("error: " + err)
   )
 })
-})
 
 //Update Order state by id
-router.put("/orders/:id", (req, res) => {
-    if (!req.body.order_state) {
-        res.status(400)
-        res.json({
-            error: "Bad Data"
-        })
-    } else {
-        Order.update(
-            { order_state: req.body.order_state },
-            { where: { id: req.params.id } }
-        )
-            .then(() => {
-                res.send("Order state Updated!")
-            })
-            .error(err => res.send(err))
-    }
-})
+// router.put("/orders/:id", (req, res) => {
+//     if (!req.body.order_state) {
+//         res.status(400)
+//         res.json({
+//             error: "Bad Data"
+//         })
+//     } else {
+//         Order.update(
+//             { order_state: req.body.order_state },
+//             { where: { id: req.params.id } }
+//         )
+//             .then(() => {
+//                 res.send("Order state Updated!")
+//             })
+//             .error(err => res.send(err))
+//     }
+// })
+
+module.exports = router

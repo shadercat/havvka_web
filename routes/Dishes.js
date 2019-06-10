@@ -6,18 +6,30 @@ var db = require('../database/db')
 
 // Get All Dishes
 router.get("/all-dishes", (req, res) => {
-    Dish.findAll()
-        .then(dishes => {
-          res.json(dishes)
-        })
-        .catch(err => {
-          res.send("error: " + err)
-        })
+  db.sequelize.query('SELECT * FROM `dishes_top`;')
+  .then(results => {
+    res.json(results[0]);
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
 });
+
+//Get All Dishes by dish_popularity
+router.get("/pall-dishes-by-popularity", (req, res) => {
+  db.sequelize.query('SELECT * FROM `dishes_top` ORDER BY dish_popularity DESC;')
+  .then(results => {
+    res.json(results[0]);
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
 
 // Get All Dishes with marks
 router.get("/all-dishes-with-marks", (req, res) => {
-  
+
 })
 
 router.post('/like:dish_id&:user_id', (req, res) => {
@@ -103,22 +115,13 @@ router.get("/dish", (req, res) => {
 
 // Get all dishes by dish type
 router.get("/category-menu", (req, res) => {
-var limit = 300;
-  if(req.query.limit){
-    limit = Number.parseInt(req.query.limit);
-  }
-  Dish.findAll({
-      where: {
-          dish_type: req.query.dish_type
-        },
-      limit: limit
+  db.sequelize.query('SELECT * FROM `dishes_top` WHERE dish_type=' + req.query.dish_type + ';')
+  .then(results => {
+    res.json(results[0]);
   })
-      .then(dishes => {
-        res.json(dishes)
-      })
-      .catch(err => {
-        res.send("error: " + err)
-      })
+  .catch(err => {
+    res.send("error: " + err)
+  })
 })
 
 
