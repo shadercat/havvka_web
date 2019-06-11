@@ -29,8 +29,8 @@ class Cart extends Component {
                                 </div>
                             <CartList aim="cart"/>
                             <div className="text-right"><h1>Итого:{total} UAH</h1>
-                            <Link to="/create-order">
-                            <button className="btn-primary">Оформить заказ</button>
+                            <Link onClick={() => value.startOrdering} to="/create-order">
+                            <button onClick={() => value.setTotal(total)} className="btn-primary">Оформить заказ</button>
                             </Link>
                         </div></div>
 

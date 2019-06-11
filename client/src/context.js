@@ -32,6 +32,12 @@ class DishProvider extends Component {
       }})
   }
 
+  startOrdering = () => {
+    this.setState({
+      tempOrder:{ordered_dishes: this.state.dishesInCart}
+    })
+    console.log(this.state.tempOrder);
+  }
 
   getSetsElements = (set_id) => {
     getSetItems(set_id).then(res => {
@@ -169,6 +175,11 @@ class DishProvider extends Component {
     }
   }
 
+setTotal = (value) => {
+  this.state.tempOrder.total = value;
+  alert(this.state.tempOrder.total);
+}
+
   deleteFromSet = (set_items_id, set_id) => {
     setItemDelete(set_items_id).then(res => {
       if(res){
@@ -283,7 +294,9 @@ addToFavourites = (id) => {
         thirdDishes: this.state.thirdDishes,
         forthDishes: this.state.forthDishes,
         detailsSet: this.state.detailsSet,
+        startOrdering: this.state.startOrdering,
         handleDetail: this.handleDetail,
+        setTotal: this.setTotal,
         dishesByPopularity: this.state.dishesByPopularity,
         getSetsElements: this.getSetsElements,
         addToCart: this.addToCart,

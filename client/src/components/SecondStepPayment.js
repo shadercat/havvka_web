@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {DishConsumer} from '../context'
 
 
 class SecondStepPayment extends Component{
@@ -21,6 +22,11 @@ class SecondStepPayment extends Component{
 
   render(){
     return(
+          <DishConsumer>
+          {value => {if(value.dishesInCart.length > 0){
+            var total = 0;
+            value.dishesInCart.map(dish => { return total += (dish.dish_amount*dish.dish_price)});
+            return(
       <div className="container">
       <div class="progress" style={{height: '15px'}}>
       <div class="progress-bar" role="progressbar" style={{width: '66%'}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -36,7 +42,7 @@ class SecondStepPayment extends Component{
                     <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">К оплате</label>
                     </div>
-                    <input type="text" disabled value={this.props.total}/>
+                    <input type="text" disabled value={total}/>
                     </div>
                     </div>
                     <label className="mt-3" htmlFor="email">Выберите способ оплаты</label>
@@ -58,7 +64,8 @@ class SecondStepPayment extends Component{
                 </form>
           </div>
           </div>
-          </div>
+          </div>)}}}
+          </DishConsumer>
     )
   }
 }
