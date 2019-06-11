@@ -44,9 +44,14 @@ export const getSetItems = (set_id) => {
   });
 }
 
-export const getSets = (user_id) => {
+export const delSetById = (set_id) => {
   return axios
-  .get('./api/sets/byuserid/'+user_id)
+  .get('./api/')
+}
+
+export const getSets = (user_email) => {
+  return axios
+  .get('./api/sets/sets-get?user_email='+user_email)
   .then(res => {
     return res
   });

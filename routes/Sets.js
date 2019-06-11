@@ -146,6 +146,7 @@ router.delete("/set_item_delete", (req, res) => {
 })
 
 router.delete("/set_delete", (req, res) => {
+  if(set_id > 0){
   Set.destroy({
     where:{
       set_id: req.query.set_id
@@ -157,7 +158,7 @@ router.delete("/set_delete", (req, res) => {
   .catch(err => {
     res.send("error: " + err)
   })
-})
+}})
 
 router.get("/", (req, res) => {
   SetItem.findAll({

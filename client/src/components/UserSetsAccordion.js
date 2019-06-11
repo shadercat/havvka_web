@@ -16,10 +16,7 @@ render(){
               <div class="card">
               <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <h2 class="mb-0">
-              <button class="btn btn-link inline" type="button" >
-              {set_name}
-              </button>
-              <div className="text-right inline">Итого {set_total_price} UAH</div></h2>
+              <div className="text-left inline">{set_name}</div></h2>
               </div>
               </div>
               </div>

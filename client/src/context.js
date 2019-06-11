@@ -16,6 +16,7 @@ class DishProvider extends Component {
     thirdDishes: [],
     forthDishes: [],
     detailsDishAv: [],
+    tempOrder: {},
     dishesByPopularity: [],
     detailsSet: [],
     userSets: [],
@@ -46,8 +47,10 @@ class DishProvider extends Component {
     var token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     var id = decoded.user_id;
+    var email = decoded.user_email;
     this.setState({
-      userId: id
+      userId: id,
+      userEmail: email
     })}
     this.loadData(id);
     this.loadGeneralData();
@@ -55,7 +58,7 @@ class DishProvider extends Component {
 
   createSet = (set_name) => {
     addSet(this.state.userId, set_name);
-    getSets(this.state.userId).then(res => {
+    getSets(this.state.userEmail).then(res => {
       if(res){
         this.setState({
           userSets: res.data
@@ -115,7 +118,7 @@ class DishProvider extends Component {
 }
 
   loadData = (id) => {
-  getSets(id).then(res => {
+  getSets(this.state.userEmail).then(res => {
     if(res){
       this.setState({
         userSets: res.data
@@ -153,7 +156,7 @@ class DishProvider extends Component {
             )
           }
         })
-        getSets(id).then(res => {
+        getSets(this.state.userEmail).then(res => {
           if(res){
             this.setState(
               {
@@ -161,6 +164,7 @@ class DishProvider extends Component {
               }
             )
           }
+          console.log(this.state.userSets);
         })
     }
   }
@@ -286,6 +290,7 @@ addToFavourites = (id) => {
         deleteSet: this.deleteSet,
         addToFavourites: this.addToFavourites,
         isHere: this.isHere,
+        tempOreder: this.state.tempOrder,
         deleteFromSet: this.deleteFromSet,
         userSets: this.state.userSets,
         detailsDishAv: this.state.detailsDishAv,

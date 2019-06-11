@@ -116,7 +116,7 @@ class Details extends Component{
                                 <Modal.Header closeButton onClick={this.handleClose1}>
                                 Выберите сет
                                 </Modal.Header>
-                                <Modal.Body><UserSets/></Modal.Body>
+                                <Modal.Body><UserSets add="true"/></Modal.Body>
                                 <Modal.Footer>
                                 <Button variant="success" onClick={this.handleClose1}>
                                 Закрыть
