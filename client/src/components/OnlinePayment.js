@@ -8,3 +8,5 @@ class OnlinePayment extends Component{
     )
   }
 }
+
+export default OnlinePayment

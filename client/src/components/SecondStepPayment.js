@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {DishConsumer} from '../context'
-
+import PaypalExpressBtn from 'react-paypal-express-checkout';
+import PaypalButton from './PaypalButton'
 
 class SecondStepPayment extends Component{
   constructor(){
@@ -46,24 +47,20 @@ class SecondStepPayment extends Component{
                     </div>
                     <label className="mt-3" htmlFor="email">Выберите способ оплаты</label>
                     <div className="form-group text-left">
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label className="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off" value="false" onCheckedChanged={this.onChange}/>Наличными
-                        </label>
-                        <label className="btn btn-secondary active">
-                        <input type="radio" name="options" id="option2" autocomplete="off"  value="true" onChackedChanged={this.onChange} checked />Онлайн-оплата
-                        </label>
+                    <Link to="/create-order/3">
+                        <button className="btn btn-primary">Наличными</button>
+                        </Link>
+                        <Link to="/create-order/3">
+                        <button className="btn btn-primary-havvka">Онлайн-оплата</button>
+                        </Link>
                       </div>
                     </div>
-                    </div>
-                // <Link to="">
-                <button onClick={console.log(document.getElementById('option2').checked)} type="submit"
-                className="btn btn-lg btn-primary btn-block">Далее</button>
-                // </Link>
                 </form>
           </div>
           </div>
-          </div>)}}}
+          </div>
+          )
+          }}}
           </DishConsumer>
     )
   }

@@ -19,6 +19,7 @@ import SetsPage from './components/SetsPage'
 import SecondStepPayment from './components/SecondStepPayment'
 import ConfirmOrder from './components/ConfirmOrder'
 import SetsDetails from './components/SetsDetails'
+import OnlinePayment from './components/OnlinePayment'
 import './App.css';
 
 
@@ -29,6 +30,7 @@ render(){
       <div className="App">
       <Header/>
       <Switch>
+      <Route exact path="/onlinepayment" component={OnlinePayment}/>
       <Route exact path="/setsdetails" component={SetsDetails}/>
       <Route exact path="/create-order" component={CreatingOrder}/>
       <Route exact path="/create-order/2" component={SecondStepPayment}/>

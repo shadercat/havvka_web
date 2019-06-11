@@ -53,12 +53,6 @@ class Navbar extends Component {
                     Корзина
                 </Link>
             </li>
-
-            <li className="nav-item ">
-                <Link to="/userorders" className=" text-white nav-link">
-                  Заказы
-                </Link>
-            </li>
                 <li className="nav-item">
                     <a href="/" onClick={this.logOut.bind(this)} className="nav-link text-white">
                         Выйти
