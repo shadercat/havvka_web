@@ -27,6 +27,16 @@ router.get("/pall-dishes-by-popularity", (req, res) => {
   })
 })
 
+router.get("/gdish-by-id", (req, res) => {
+  db.sequelize.query('SELECT * FROM `dishes_top` WHERE dish_id=' + req.query.dish_id)
+  .then(results => {
+    res.json(results[0]);
+  })
+  .catch(err => {
+    res.send("error: " + err)
+  })
+})
+
 
 // Get All Dishes with marks
 router.get("/all-dishes-with-marks", (req, res) => {

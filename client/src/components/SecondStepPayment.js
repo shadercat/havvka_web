@@ -17,7 +17,6 @@ class SecondStepPayment extends Component{
     this.setState({
       paymentType: e.target.value
     })
-    console.log(this.state.paymentType);
   }
 
   render(){
@@ -49,18 +48,18 @@ class SecondStepPayment extends Component{
                     <div className="form-group text-left">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label className="btn btn-secondary">
-                        <input type="radio" name="options" id="option1" autocomplete="off" value="Наличными" onChange={this.onChange}/>Наличными
+                        <input type="radio" name="options" id="option1" autocomplete="off" value="false" onCheckedChanged={this.onChange}/>Наличными
                         </label>
                         <label className="btn btn-secondary active">
-                        <input type="radio" name="options" id="option2" autocomplete="off"  value="Онлайн" onChange={this.onChange} checked />Онлайн-оплата
+                        <input type="radio" name="options" id="option2" autocomplete="off"  value="true" onChackedChanged={this.onChange} checked />Онлайн-оплата
                         </label>
                       </div>
                     </div>
                     </div>
-                <Link to="/create-order/3">
-                <button type="submit"
+                // <Link to="">
+                <button onClick={console.log(document.getElementById('option2').checked)} type="submit"
                 className="btn btn-lg btn-primary btn-block">Далее</button>
-                </Link>
+                // </Link>
                 </form>
           </div>
           </div>
